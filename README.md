@@ -8,7 +8,7 @@
 
 ## 项目简介
 
-此项目通过一个Shell脚本 `logi-options-plus-mini.sh` 实现，脚本会下载官方安装包，并使用命令行选项精简掉键盘、鼠标外的所有功能。
+此项目通过一个Shell脚本 `logi-options-plus-mini.shell` 实现，脚本会下载官方安装包，并使用命令行选项精简掉键盘、鼠标外的所有功能。
 
 ## 特性
 
@@ -35,7 +35,7 @@
 
 2. 运行Shell脚本（需要`sudo`权限卸载旧版本）
     ```bash
-    sudo ./logi-options-plus-mini.sh
+    sudo ./logi-options-plus-mini.shell
     ```
 
 脚本将会自动下载官方安装包，并进行精简安装。

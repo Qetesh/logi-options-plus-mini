@@ -8,7 +8,7 @@
 
 ## Project Overview
 
-This project is implemented through a shell script `logi-options-plus-mini.sh`, which downloads the official installer and streamlines it by removing all functions except for keyboard and mouse.
+This project is implemented through a shell script `logi-options-plus-mini.shell`, which downloads the official installer and streamlines it by removing all functions except for keyboard and mouse.
 
 ## Features
 
@@ -35,7 +35,7 @@ This project is implemented through a shell script `logi-options-plus-mini.sh`, 
 
 2. Run the shell script (requires `sudo` permission to uninstall the old version)
     ```bash
-    sudo ./logi-options-plus-mini.sh
+    sudo ./logi-options-plus-mini.shell
     ```
 
 The script will automatically download the official installer and perform a streamlined installation.
