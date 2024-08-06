@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #set -x
 
 ############################################################################################
@@ -19,7 +19,7 @@ installer_name="logioptionsplus_installer"
 echo ""
 echo "##############################################################"
 echo "$(date) | Starting install of $appname"
-echo "############################################################"
+echo "##############################################################"
 echo ""
 
 pushd "/private/tmp"
@@ -42,20 +42,25 @@ package_unzip="$downloaded_path"
 echo "$(date) | Unarchiving $package_zip to $package_unzip..."
 ditto -x -k "$package_zip" "$package_unzip"
 
-# Installing...
-echo "$(date) | Installing $appname..."
 install_command="$package_unarchived_path/Contents/MacOS/$installer_name"
 
 pushd "$package_unarchived_path"
-echo "$(date) | Running installer $install_command"
 
 # Configure backup
+echo "$(date) | Backing up existing configuration..."
 mv ~/Library/Application\ Support/LogiOptionsPlus ~/Library/Application\ Support/LogiOptionsPlus_bak
-$install_command --uninstall
+
+echo "$(date) | Uninstalling existing version of  $appname"
+sudo $install_command --uninstall  >> /dev/null 2>&1
+
+echo "$(date) | Restoring configuration from backup..."
 mv ~/Library/Application\ Support/LogiOptionsPlus_bak ~/Library/Application\ Support/LogiOptionsPlus
 
+# Installing...
+# Change the following arguments to 'Yes' if you want to install the module.
 # disable analytics、flow、sso、update、dfu、logivoice、aipromptbuilder、device-recommendation
-$install_command --analytics No --flow No --sso No --update No --dfu No --logivoice No --aipromptbuilder No --device-recommendation No
+echo "$(date) | Installing $appname..."
+sudo $install_command --analytics No --flow No --sso No --update No --dfu No --logivoice No --aipromptbuilder No --device-recommendation No >> /dev/null 2>&1
 popd
 
 if [ "$?" = "0" ]; then

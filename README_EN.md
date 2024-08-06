@@ -7,12 +7,13 @@
 <img width="1518" alt="image" src="https://github.com/Qetesh/logi-options-plus-mini/assets/4559341/bf97e703-d5d5-43d6-9236-6e1d06b7c0c8">
 
 ## Project Overview
-
-This project is implemented through a shell script `logi-options-plus-mini.shell`, which downloads the official installer and streamlines it by removing all functions except for keyboard and mouse.
+Refer to the official [Mass installation and configuration of Logitech Options+ software](https://prosupport.logi.com/hc/zh-cn/articles/6046882446359-Logitech-Options-软件的批量安装和配置)
+This project is implemented through a shell script `logi-options-plus-mini.command`, which downloads the official installer and streamlines it by removing all functions except for keyboard and mouse.
 
 ## Features
 
 - Only supports keyboards and mice
+- Automatically retain configuration when uninstalling and upgrading
 - Removes unnecessary features to improve software performance
   - analytics: user sharing of application usage and diagnostic data
   - flow
@@ -20,8 +21,8 @@ This project is implemented through a shell script `logi-options-plus-mini.shell
   - update: application updates
   - dfu: device firmware updates
   - logivoice: Logitech voice 
-  - aipromptbuilder: AI Prompt Builder 
-  - device-recommendation: device recommendation 
+  - aipromptbuilder: AI Prompt Builder (macOS only)
+  - device-recommendation: device recommendation (macOS only)
 - Easy-to-use shell script
   - You can modify the installation options in the shell file to add needed features
 
@@ -34,15 +35,21 @@ This project is implemented through a shell script `logi-options-plus-mini.shell
     ```
 
 2. Run the shell script (requires `sudo` permission to uninstall the old version)
+  - macOS
     ```bash
-    sudo ./logi-options-plus-mini.shell
+    chmod u+x logi-options-plus-mini.command
+    ./logi-options-plus-mini.command
     ```
+  - Windows (Requires running the `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned` command once in an administrator terminal)
 
-The script will automatically download the official installer and perform a streamlined installation.
+    Right-click on the ps1 script and "Run with PowerShell"
+
+  The script will automatically download the official installer and perform a streamlined installation.
 
 ## System Requirements
 
-- macOS system
+- macOS
+- Windows
 - Internet connection to download the official installer
 
 ## Contributing

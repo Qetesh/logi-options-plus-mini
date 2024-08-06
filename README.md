@@ -7,12 +7,14 @@
 <img width="1518" alt="image" src="https://github.com/Qetesh/logi-options-plus-mini/assets/4559341/bf97e703-d5d5-43d6-9236-6e1d06b7c0c8">
 
 ## 项目简介
+参考官方[Logitech Options 软件的批量安装和配置](https://prosupport.logi.com/hc/zh-cn/articles/6046882446359-Logitech-Options-软件的批量安装和配置)
 
-此项目通过一个Shell脚本 `logi-options-plus-mini.shell` 实现，脚本会下载官方安装包，并使用命令行选项精简掉键盘、鼠标外的所有功能。
+此项目通过一个Shell脚本 `logi-options-plus-mini.command` 实现，脚本会下载官方安装包，并使用命令行选项精简掉键盘、鼠标外的所有功能。
 
 ## 特性
 
 - 仅保留键盘和鼠标功能
+- 卸载升级时自动保留配置
 - 去除无关功能，提升软件性能
   - analytics 用户分享应用程序使用情况和诊断数据
   - flow
@@ -20,8 +22,8 @@
   - update 应用程序更新
   - dfu 设备固件更新
   - logivoice 罗技语音功能
-  - aipromptbuilder  AI Prompt Builder 功能
-  - device-recommendation 设备推荐功能
+  - aipromptbuilder  AI Prompt Builder 功能（仅限macOS）
+  - device-recommendation 设备推荐功能（仅限macOS）
 - 易于使用的Shell脚本
   - 可修改shell文件中安装选项，添加需要的功能
 
@@ -34,15 +36,21 @@
     ```
 
 2. 运行Shell脚本（需要`sudo`权限卸载旧版本）
+  - macOS
     ```bash
-    sudo ./logi-options-plus-mini.shell
+    chmod u+x logi-options-plus-mini.command
+    ./logi-options-plus-mini.command
     ```
+  - Windows（需要管理员终端运行一次`Set-ExecutionPolicy -ExecutionPolicy RemoteSigned`）
+
+    右键ps1脚本，`使用PowerShell运行`
 
 脚本将会自动下载官方安装包，并进行精简安装。
 
 ## 系统要求
 
-- macOS系统
+- macOS
+- Windows
 - 网络连接以下载官方安装包
 
 ## 贡献
