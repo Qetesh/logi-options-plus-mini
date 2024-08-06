@@ -5,6 +5,8 @@
 <img width="1518" alt="image" src="https://github.com/Qetesh/logi-options-plus-mini/assets/4559341/d4c503a9-51d8-4a18-af90-a3f3be508e8b">
 <img width="1518" alt="image" src="https://github.com/Qetesh/logi-options-plus-mini/assets/4559341/14a85961-b022-4fc9-99bf-6e30b071f54c">
 <img width="1518" alt="image" src="https://github.com/Qetesh/logi-options-plus-mini/assets/4559341/bf97e703-d5d5-43d6-9236-6e1d06b7c0c8">
+<img width="1059" alt="image" src="https://github.com/user-attachments/assets/a3700376-a4ba-44d3-b27b-116b0424b693">
+<img width="928" alt="image" src="https://github.com/user-attachments/assets/4d555a79-9f95-455b-8ad4-a415f607c475">
 
 ## 项目简介
 参考官方[Logitech Options 软件的批量安装和配置](https://prosupport.logi.com/hc/zh-cn/articles/6046882446359-Logitech-Options-软件的批量安装和配置)
