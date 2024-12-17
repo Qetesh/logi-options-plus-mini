@@ -50,10 +50,97 @@ if (Test-Path $backupPath) {
     Write-Host "$(Get-Date) | Configuration restored from $backupPath"
 }
 
-# Change the following arguments to 'Yes' if you want to install the module.
+# Interactive Feature Selection
+Write-Host ""
+Write-Host "Please select the features you want to keep(e.g. 2 6, default is none):"
+Write-Host "1. analytics:             Shows or hides choice for users to opt in to share app usage and diagnostics data."
+Write-Host "2. flow:                  Shows or hides the Flow feature. Default value is Yes"
+Write-Host "3. sso:                   Shows or hides ability for users to sign into the app."
+Write-Host "4. update:                Enables or disables app updates."
+Write-Host "5. dfu:                   Enables or disables device firmware updates."
+Write-Host "6. backlight:             Enables or disables keyboard backlight on the supported keyboards."
+Write-Host "7. logivoice:             Enables or disables LogiVoice feature."
+Write-Host "8. aipromptbuilder:       Enables or disables AI Prompt Builder feature."
+Write-Host "9. device-recommendation: Enables or disables device recommendation feature."
+Write-Host "10. smartactions:         Enables or disables Smart Actions feature."
+Write-Host "11. all"
+Write-Host "Press enter for none"
+Write-Host ""
+
+# Get user input for feature selection
+$selectedFeatures = Read-Host "Enter your choices (space-separated numbers)"
+if ($selectedFeatures -eq "") {
+    $selectedFeatures = "none"
+}
+
+# Initialize all options as "No"
+$analytics = "No"
+$flow = "No"
+$sso = "No"
+$update = "No"
+$dfu = "No"
+$backlight = "No"
+$logivoice = "No"
+$aipromptbuilder = "No"
+$device_recommendation = "No"
+$smartactions = "No"
+
+# If "all" (11) is selected, set all options to "Yes"
+if ($selectedFeatures -eq "11") {
+    $analytics = "Yes"
+    $flow = "Yes"
+    $sso = "Yes"
+    $update = "Yes"
+    $dfu = "Yes"
+    $backlight = "Yes"
+    $logivoice = "Yes"
+    $aipromptbuilder = "Yes"
+    $device_recommendation = "Yes"
+    $smartactions = "Yes"
+} else {
+    # Set selected options to "Yes"
+    $featureList = $selectedFeatures -split " "
+    foreach ($feature in $featureList) {
+        switch ($feature) {
+            "1" { $analytics = "Yes" }
+            "2" { $flow = "Yes" }
+            "3" { $sso = "Yes" }
+            "4" { $update = "Yes" }
+            "5" { $dfu = "Yes" }
+            "6" { $backlight = "Yes" }
+            "7" { $logivoice = "Yes" }
+            "8" { $aipromptbuilder = "Yes" }
+            "9" { $device_recommendation = "Yes" }
+            "10" { $smartactions = "Yes" }
+            default { Write-Host "Invalid option: $feature" }
+        }
+    }
+}
+
+# Confirm settings with the user
+Write-Host ""
+Write-Host "Please confirm the following settings:"
+Write-Host "analytics:                $analytics"
+Write-Host "flow:                     $flow"
+Write-Host "sso:                      $sso"
+Write-Host "update:                   $update"
+Write-Host "dfu:                      $dfu"
+Write-Host "backlight:                $backlight"
+Write-Host "logivoice:                $logivoice"
+Write-Host "aipromptbuilder:          $aipromptbuilder"
+Write-Host "device-recommendation:    $device_recommendation"
+Write-Host "smartactions:             $smartactions"
+Write-Host ""
+
+$confirm = Read-Host "Are these settings correct? (Y/n)"
+if ($confirm -ne "Y" -and $confirm -ne "y" -and $confirm -ne "") {
+    Write-Host "$(Get-Date) | Installation cancelled."
+    exit 1
+}
+
 # Install new version
 Write-Host "$(Get-Date) | Installing $appName..."
-$installArgs = "/analytics", "No", "/flow", "No", "/sso", "No", "/update", "No", "/dfu", "No", "/backlight", "No"
+$installArgs = "/analytics", $analytics, "/flow", $flow, "/sso", $sso, "/update", $update, "/dfu", $dfu, "/backlight", $backlight, "/logivoice", $logivoice, "/aipromptbuilder", $aipromptbuilder, "/device-recommendation", $device_recommendation, "/smartactions", $smartactions
 $process = Start-Process -FilePath $downloadPath -ArgumentList $installArgs -PassThru -Verb RunAs
 $Handle = $process.Handle
 $process.WaitForExit()
