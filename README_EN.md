@@ -1,16 +1,16 @@
 # Logi Options Plus Mini
 [中文版本](README.md) | [English Version](README_EN.md)
 
-**Logi Options Plus Mini** is a streamlined version of Logi Options Plus that only supports keyboards and mice, making Logitech keyboards and mice more efficient to use.
+**Logi Options Plus Mini** is a streamlined version of Logi Options Plus that only supports keyboards and mouse, making Logitech keyboards and mice more efficient to use.
 <img width="1518" alt="image" src="https://github.com/Qetesh/logi-options-plus-mini/assets/4559341/d4c503a9-51d8-4a18-af90-a3f3be508e8b">
 <img width="1518" alt="image" src="https://github.com/Qetesh/logi-options-plus-mini/assets/4559341/14a85961-b022-4fc9-99bf-6e30b071f54c">
 <img width="1518" alt="image" src="https://github.com/Qetesh/logi-options-plus-mini/assets/4559341/bf97e703-d5d5-43d6-9236-6e1d06b7c0c8">
 <img width="806" alt="image" src="https://github.com/user-attachments/assets/66f8d2d7-5981-4085-9829-25c0189804a8">
-<img width="928" alt="image" src="https://github.com/user-attachments/assets/4d555a79-9f95-455b-8ad4-a415f607c475">
+<img width="987" alt="image" src="https://github.com/user-attachments/assets/d8918fd1-36f2-4933-9cc7-28471745139b">
 
 ## Project Overview
 Refer to the official [Mass installation and configuration of Logitech Options+ software](https://prosupport.logi.com/hc/zh-cn/articles/6046882446359-Logitech-Options-软件的批量安装和配置)
-This project is implemented through a shell script `logi-options-plus-mini.command`, which downloads the official installer and streamlines it by removing all functions except for keyboard and mouse.
+This project is implemented through a shell script `logi-options-plus-mini.command`, It downloaded the official installer and removed most of the functions except for the keyboard and mouse.
 
 ## Features
 
@@ -66,7 +66,32 @@ This project is implemented through a shell script `logi-options-plus-mini.comma
   - Windows (Requires running the `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned` command once in an administrator terminal)
 
     Right-click on the ps1 script and "Run with PowerShell"
+    ```powershell
+    ##############################################################
+    12/17/2024 19:50:23 | Starting install of Logi Options+
+    ##############################################################
+    12/17/2024 19:50:24 | Downloading Logi Options+ Installer...
+    12/17/2024 19:51:06 | Download completed successfully.
+    12/17/2024 19:51:06 | Uninstalling existing version of Logi Options+...
+    
+    Please select the features you want to keep(e.g. 2 6, default is none):
+    1. analytics:             Shows or hides choice for users to opt in to share app usage and diagnostics data.
+    2. flow:                  Shows or hides the Flow feature. Default value is Yes
+    3. sso:                   Shows or hides ability for users to sign into the app.
+    4. update:                Enables or disables app updates.
+    5. dfu:                   Enables or disables device firmware updates.
+    6. backlight:             Enables or disables keyboard backlight on the supported keyboards.
+    7. logivoice:             Enables or disables LogiVoice feature.
+    8. aipromptbuilder:       Enables or disables AI Prompt Builder feature.
+    9. device-recommendation: Enables or disables device recommendation feature.
+    10. smartactions:         Enables or disables Smart Actions feature.
+    11. all
+    Press enter for none
+    
+    Enter your choices (space-separated numbers):
 
+    ```
+    
   The script will automatically download the official installer and perform a streamlined installation.
 
 ## System Requirements
@@ -78,9 +103,15 @@ This project is implemented through a shell script `logi-options-plus-mini.comma
 ## FAQ
 - Some Macs cannot be uninstalled using the official method, and a third-party tool is required for uninstallation and then re-running. It has been tested that after using `Pearcleaner` for uninstallation, it can run normally after installation.
 
+## Contributors
+
+<a href="https://github.com/Qetesh/logi-options-plus-mini/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=Qetesh/logi-options-plus-mini" />
+</a>
+
 ## Contributing
 
-Feel free to submit issues and requests. You can contribute code as follows:
+Welcome to submit issues and requests. You can contribute code as follows:
 
 1. Fork this repository
 2. Create your branch (`git checkout -b feature/AmazingFeature`)
