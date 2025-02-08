@@ -5,7 +5,7 @@
 ##
 ## Script to install latest Logi Options+ on macOS
 ##
-###########################################
+###############################################
 
 # Path.
 package="logioptionsplus_installer"
@@ -22,7 +22,7 @@ echo "##############################################################"
 echo "$(date) | Starting install of $appname"
 echo "##############################################################"
 echo ""
-echo "Please select the features you want to keep(e.g. 2 6, default is none):"
+echo "Please select the features you want to keep:"
 echo "1. analytics:             Shows or hides choice for users to opt in to share app usage and diagnostics data."
 echo "2. flow:                  Shows or hides the Flow feature. Default value is Yes"
 echo "3. sso:                   Shows or hides ability for users to sign into the app."
@@ -37,7 +37,7 @@ echo "11. all"
 echo "Press enter for none"
 echo ""
 
-read -p "Enter your choices: " features
+read -p "Enter your choices(e.g. 2 6, default is none): " features
 
 # Initialize all options as "No"
 analytics="No"
@@ -96,7 +96,7 @@ echo "device-recommendation:    $device_recommendation"
 echo "smartactions:             $smartactions"
 echo ""
 
-read -p "Are these settings correct? (Y/n): " confirm
+read -p "Are these settings correct? [y/n](default: y): " confirm
 if [[ $confirm != "Y" && $confirm != "y" && $confirm != "" ]]; then
     echo "Installation cancelled."
     exit 1
@@ -114,13 +114,13 @@ popd
 
 # Downloading the Installer.
 echo "$(date) | Downloading $appname Installer..."
-curl -L -f -o "$downloaded_package_path" $weburl
+curl -L -f -o "$downloaded_package_path" "$weburl" || { echo "Failed to download installer"; exit 1; }
 
 # Unzip the Installer.
 package_zip="$downloaded_package_path"
 package_unzip="$downloaded_path"
 echo "$(date) | Unarchiving $package_zip to $package_unzip..."
-ditto -x -k "$package_zip" "$package_unzip"
+ditto -x -k "$package_zip" "$package_unzip" || { echo "Failed to unzip installer"; exit 1; }
 
 pushd "$package_unarchived_path"
 
@@ -128,7 +128,7 @@ pushd "$package_unarchived_path"
 echo "$(date) | Backing up existing configuration..."
 mv ~/Library/Application\ Support/LogiOptionsPlus ~/Library/Application\ Support/LogiOptionsPlus_bak
 
-echo "$(date) | Uninstalling existing version of  $appname"
+echo "$(date) | Uninstalling existing version of $appname"
 uninstall_command="$install_path --uninstall"
 echo "Executing: $uninstall_command"
 sudo $uninstall_command >> /dev/null 2>&1

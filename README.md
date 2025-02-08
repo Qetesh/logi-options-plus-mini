@@ -48,7 +48,7 @@
     2024年12月15日 星期日 23时32分33秒 +08 | Starting install of Logi Options+
     ##############################################################
     
-    Please select the features you want to keep(e.g. 2 6, default is none):
+    Please select the features you want to keep:
     1. analytics:             Shows or hides choice for users to opt in to share app usage and diagnostics data.
     2. flow:                  Shows or hides the Flow feature. Default value is Yes
     3. sso:                   Shows or hides ability for users to sign into the app.
@@ -62,9 +62,9 @@
     11. all
     Press enter for none
     
-    Enter your choices: 
+    Enter your choices(e.g. 2 6, default is none): 
     ```
-  - Windows（需要管理员终端运行一次`Set-ExecutionPolicy -ExecutionPolicy RemoteSigned`）
+  - Windows（需要管理员终端运行一次`Set-ExecutionPolicy -ExecutionPolicy RemoteSigned`，具体见：[#5](https://github.com/Qetesh/logi-options-plus-mini/issues/5)）
 
     右键ps1脚本，`使用PowerShell运行`
     ```powershell
@@ -75,7 +75,7 @@
     12/17/2024 19:51:06 | Download completed successfully.
     12/17/2024 19:51:06 | Uninstalling existing version of Logi Options+...
     
-    Please select the features you want to keep(e.g. 2 6, default is none):
+    Please select the features you want to keep:
     1. analytics:             Shows or hides choice for users to opt in to share app usage and diagnostics data.
     2. flow:                  Shows or hides the Flow feature. Default value is Yes
     3. sso:                   Shows or hides ability for users to sign into the app.
@@ -89,7 +89,7 @@
     11. all
     Press enter for none
     
-    Enter your choices (space-separated numbers):
+    Enter your choices(e.g. 2 6, default is none):
 
     ```
 

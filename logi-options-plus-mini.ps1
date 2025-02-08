@@ -52,7 +52,7 @@ if (Test-Path $backupPath) {
 
 # Interactive Feature Selection
 Write-Host ""
-Write-Host "Please select the features you want to keep(e.g. 2 6, default is none):"
+Write-Host "Please select the features you want to keep:"
 Write-Host "1. analytics:             Shows or hides choice for users to opt in to share app usage and diagnostics data."
 Write-Host "2. flow:                  Shows or hides the Flow feature. Default value is Yes"
 Write-Host "3. sso:                   Shows or hides ability for users to sign into the app."
@@ -68,7 +68,7 @@ Write-Host "Press enter for none"
 Write-Host ""
 
 # Get user input for feature selection
-$selectedFeatures = Read-Host "Enter your choices (space-separated numbers)"
+$selectedFeatures = Read-Host "Enter your choices (e.g. 2 6, default is none):"
 if ($selectedFeatures -eq "") {
     $selectedFeatures = "none"
 }
@@ -132,7 +132,7 @@ Write-Host "device-recommendation:    $device_recommendation"
 Write-Host "smartactions:             $smartactions"
 Write-Host ""
 
-$confirm = Read-Host "Are these settings correct? (Y/n)"
+$confirm = Read-Host "Are these settings correct? [y/n](default: y)"
 if ($confirm -ne "Y" -and $confirm -ne "y" -and $confirm -ne "") {
     Write-Host "$(Get-Date) | Installation cancelled."
     exit 1
