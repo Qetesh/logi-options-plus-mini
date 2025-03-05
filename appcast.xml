@@ -1,0 +1,14 @@
+<?xml version="1.0" standalone="yes"?>
+<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+    <channel>
+        <title>Logi Options+ mini</title>
+        <item>
+            <title>1.0</title>
+            <pubDate>Wed, 05 Mar 2025 16:44:16 +0800</pubDate>
+            <sparkle:version>8</sparkle:version>
+            <sparkle:shortVersionString>1.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/Qetesh/logi-options-plus-mini/releases/download/v1.0/Logi%20Options+%20mini.dmg" length="1917317" type="application/octet-stream" sparkle:edSignature="jUdTbBe4YSm2oTDsReCyTev7KMGRG2WcSVPsVOzoCUw77abyegGZHv6qChnCpcXy4BxR2r+HUePm06trOxcVCg=="/>
+        </item>
+    </channel>
+</rss>
