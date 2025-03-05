@@ -1,23 +1,27 @@
 # Logi Options Plus Mini
-[中文版本](README.md) | [English Version](README_EN.md)
+[中文](README.md) | [English](README_EN.md)
 
-**Logi Options Plus Mini** 是一个精简版的Logi Options Plus，它只保留了对键盘和鼠标的支持，使得罗技键盘和鼠标的使用更加高效。
-<img width="1518" alt="image" src="https://github.com/Qetesh/logi-options-plus-mini/assets/4559341/d4c503a9-51d8-4a18-af90-a3f3be508e8b">
-<img width="1518" alt="image" src="https://github.com/Qetesh/logi-options-plus-mini/assets/4559341/14a85961-b022-4fc9-99bf-6e30b071f54c">
-<img width="1518" alt="image" src="https://github.com/Qetesh/logi-options-plus-mini/assets/4559341/bf97e703-d5d5-43d6-9236-6e1d06b7c0c8">
-<img width="806" alt="image" src="https://github.com/user-attachments/assets/66f8d2d7-5981-4085-9829-25c0189804a8">
-<img width="987" alt="image" src="https://github.com/user-attachments/assets/d8918fd1-36f2-4933-9cc7-28471745139b">
+**Logi Options+ mini** 提供了一种选择来自定义 Logi Options+，方便用户能够更好地控制其功能。
+
+<img width="600" alt="image" src="https://github.com/user-attachments/assets/c20e0a5a-256d-4fa0-bc16-c972d32a4f51">
+<img width="600" alt="image" src="https://github.com/Qetesh/logi-options-plus-mini/assets/4559341/d4c503a9-51d8-4a18-af90-a3f3be508e8b">
+<img width="600" alt="image" src="https://github.com/Qetesh/logi-options-plus-mini/assets/4559341/14a85961-b022-4fc9-99bf-6e30b071f54c">
+<img width="600" alt="image" src="https://github.com/Qetesh/logi-options-plus-mini/assets/4559341/bf97e703-d5d5-43d6-9236-6e1d06b7c0c8">
+<img width="600" alt="image" src="https://github.com/user-attachments/assets/66f8d2d7-5981-4085-9829-25c0189804a8">
+<img width="600" alt="image" src="https://github.com/user-attachments/assets/d8918fd1-36f2-4933-9cc7-28471745139b">
 
 ## 项目简介
 参考官方[Logitech Options 软件的批量安装和配置](https://prosupport.logi.com/hc/zh-cn/articles/6046882446359-Logitech-Options-软件的批量安装和配置)
 
-此项目通过一个Shell脚本 `logi-options-plus-mini.command` 实现，脚本会下载官方安装包，并使用命令行选项精简掉键盘、鼠标外的所有功能。
+项目通过官方安装包命令行选项定制化Logi Options+功能。
+支持macOS原生应用、macOS Shell、Windows PowerShell。
 
 ## 特性
 
-- 仅保留键盘和鼠标功能
+- 定制化Logi Options+功能
+- 易于使用的交互设计
 - 卸载升级时自动保留配置
-- 去除无关功能，提升软件性能
+- 可定制功能
   - analytics 用户分享应用程序使用情况和诊断数据
   - flow
   - sso 用户登录应用程序的功能
@@ -27,10 +31,19 @@
   - aipromptbuilder  AI Prompt Builder 功能（仅限macOS）
   - smartactions
   - device-recommendation 设备推荐功能（仅限macOS）
-- 易于使用的Shell脚本
-  - 可修改shell文件中安装选项，添加需要的功能
 
 ## 使用方法
+
+### 使用 macOS 原生应用
+
+下载最新版本 [here](https://v.qetesh.cc/d/Public/Logi%20Options%2B%20mini.dmg)
+
+[<img width="64" alt="logi option plus1" src="https://github.com/user-attachments/assets/2c57172a-b1e3-4bab-abb8-6c60425ca640" />](https://v.qetesh.cc/d/Public/Logi%20Options%2B%20mini.dmg)
+
+🔔 由于没有使用开发者证书签署应用，macOS可能会显示安全警告，只需前往系统设置 → 隐私与安全 → 已阻止“Logi Options+mini”以保护Mac。然后点击“仍要打开”以运行该应用程序。
+![WX20250305-181838@2x](https://github.com/user-attachments/assets/ca75fad3-b1e6-4b51-ba2c-f4b8e5770fb7)
+
+### 使用 macOS Shell
 
 1. 克隆此项目到本地
     ```bash
