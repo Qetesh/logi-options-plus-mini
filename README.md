@@ -42,6 +42,7 @@
 [<img width="64" alt="logi option plus1" src="https://github.com/user-attachments/assets/2c57172a-b1e3-4bab-abb8-6c60425ca640" />](https://v.qetesh.cc/d/Public/Logi%20Options%2B%20mini.dmg)
 
 🔔 由于没有使用开发者证书签署应用，macOS可能会显示安全警告，只需前往系统设置 → 隐私与安全 → 已阻止“Logi Options+mini”以保护Mac。然后点击“仍要打开”以运行该应用程序。
+
 ![WX20250305-181838@2x](https://github.com/user-attachments/assets/ca75fad3-b1e6-4b51-ba2c-f4b8e5770fb7)
 
 ### 使用 macOS Shell
@@ -127,6 +128,8 @@
 </a>
 
 ## 贡献
+
+[![Powered by DartNode](https://dartnode.com/branding/DN-Open-Source-sm.png)](https://dartnode.com "Powered by DartNode - Free VPS for Open Source")
 
 欢迎提交问题和请求。您可以通过以下方式贡献代码：
 
