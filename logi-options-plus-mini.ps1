@@ -63,7 +63,8 @@ Write-Host "7. logivoice:             Enables or disables LogiVoice feature."
 Write-Host "8. aipromptbuilder:       Enables or disables AI Prompt Builder feature."
 Write-Host "9. device-recommendation: Enables or disables device recommendation feature."
 Write-Host "10. smartactions:         Enables or disables Smart Actions feature."
-Write-Host "11. all"
+Write-Host "11. actions-ring:         Enables or disables Actions Ring feature."
+Write-Host "12. all"
 Write-Host "Press enter for none"
 Write-Host ""
 
@@ -84,6 +85,7 @@ $logivoice = "No"
 $aipromptbuilder = "No"
 $device_recommendation = "No"
 $smartactions = "No"
+$actions_ring = "No"
 
 # If "all" (11) is selected, set all options to "Yes"
 if ($selectedFeatures -eq "11") {
@@ -97,6 +99,7 @@ if ($selectedFeatures -eq "11") {
     $aipromptbuilder = "Yes"
     $device_recommendation = "Yes"
     $smartactions = "Yes"
+    $actions_ring = "Yes"
 } else {
     # Set selected options to "Yes"
     $featureList = $selectedFeatures -split " "
@@ -112,6 +115,7 @@ if ($selectedFeatures -eq "11") {
             "8" { $aipromptbuilder = "Yes" }
             "9" { $device_recommendation = "Yes" }
             "10" { $smartactions = "Yes" }
+            "11" { $actions_ring = "Yes" }
             default { Write-Host "Invalid option: $feature" }
         }
     }
@@ -130,6 +134,7 @@ Write-Host "logivoice:                $logivoice"
 Write-Host "aipromptbuilder:          $aipromptbuilder"
 Write-Host "device-recommendation:    $device_recommendation"
 Write-Host "smartactions:             $smartactions"
+Write-Host "actions-ring:             $actions_ring"
 Write-Host ""
 
 $confirm = Read-Host "Are these settings correct? [y/n](default: y)"
@@ -140,7 +145,7 @@ if ($confirm -ne "Y" -and $confirm -ne "y" -and $confirm -ne "") {
 
 # Install new version
 Write-Host "$(Get-Date) | Installing $appName..."
-$installArgs = "/analytics", $analytics, "/flow", $flow, "/sso", $sso, "/update", $update, "/dfu", $dfu, "/backlight", $backlight, "/logivoice", $logivoice, "/aipromptbuilder", $aipromptbuilder, "/device-recommendation", $device_recommendation, "/smartactions", $smartactions
+$installArgs = "/analytics", $analytics, "/flow", $flow, "/sso", $sso, "/update", $update, "/dfu", $dfu, "/backlight", $backlight, "/logivoice", $logivoice, "/aipromptbuilder", $aipromptbuilder, "/device-recommendation", $device_recommendation, "/smartactions", $smartactions, "/actions-ring", $actions_ring
 $process = Start-Process -FilePath $downloadPath -ArgumentList $installArgs -PassThru -Verb RunAs
 $Handle = $process.Handle
 $process.WaitForExit()

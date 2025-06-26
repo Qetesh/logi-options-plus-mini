@@ -33,7 +33,8 @@ echo "7. logivoice:             Enables or disables LogiVoice feature."
 echo "8. aipromptbuilder:       Enables or disables AI Prompt Builder feature."
 echo "9. device-recommendation: Enables or disables device recommendation feature."
 echo "10. smartactions:         Enables or disables Smart Actions feature."
-echo "11. all"
+echo "11. actions-ring:         Enables or disables Actions Ring feature."
+echo "12. all"
 echo "Press enter for none"
 echo ""
 
@@ -50,6 +51,7 @@ logivoice="No"
 aipromptbuilder="No"
 device_recommendation="No"
 smartactions="No"
+actions_ring="No"
 
 # If "all" (11) is selected, set all options to "Yes"
 if [[ "$features" == *11* ]]; then
@@ -63,6 +65,7 @@ if [[ "$features" == *11* ]]; then
   aipromptbuilder="Yes"
   device_recommendation="Yes"
   smartactions="Yes"
+  actions_ring="Yes"
 else
   # Set selected options to "Yes"
   for feature in $features; do
@@ -77,6 +80,7 @@ else
       8) aipromptbuilder="Yes" ;;
       9) device_recommendation="Yes" ;;
       10) smartactions="Yes" ;;
+      11) actions_ring="Yes" ;;
       *) echo "Invalid option: $feature";;
     esac
   done
@@ -94,6 +98,7 @@ echo "logivoice:                $logivoice"
 echo "aipromptbuilder:          $aipromptbuilder"
 echo "device-recommendation:    $device_recommendation"
 echo "smartactions:             $smartactions"
+echo "actions-ring:             $actions_ring"
 echo ""
 
 read -p "Are these settings correct? [y/n](default: y): " confirm
@@ -142,7 +147,7 @@ mv ~/Library/Application\ Support/LogiOptionsPlus_bak ~/Library/Application\ Sup
 echo "$(date) | Installing $appname..."
 
 # Construct the install command with selected options
-install_command="$install_path --analytics $analytics --flow $flow --sso $sso --update $update --dfu $dfu --backlight $backlight --logivoice $logivoice --aipromptbuilder $aipromptbuilder --device-recommendation $device_recommendation --smartactions $smartactions"
+install_command="$install_path --analytics $analytics --flow $flow --sso $sso --update $update --dfu $dfu --backlight $backlight --logivoice $logivoice --aipromptbuilder $aipromptbuilder --device-recommendation $device_recommendation --smartactions $smartactions --actions-ring $actions_ring"
 echo "Executing: $install_command"
 
 sudo $install_command >> /dev/null 2>&1
