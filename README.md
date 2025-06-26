@@ -30,6 +30,7 @@
   - logivoice 罗技语音功能
   - aipromptbuilder  AI Prompt Builder 功能（仅限macOS）
   - smartactions
+  - actions-ring
   - device-recommendation 设备推荐功能（仅限macOS）
 
 ## 使用方法
@@ -72,7 +73,8 @@
     8. aipromptbuilder:       Enables or disables AI Prompt Builder feature.
     9. device-recommendation: Enables or disables device recommendation feature.
     10. smartactions:         Enables or disables Smart Actions feature.
-    11. all
+    11. actions-ring:         Enables or disables Actions Ring feature.
+    12. all
     Press enter for none
     
     Enter your choices(e.g. 2 6, default is none): 
@@ -99,7 +101,8 @@
     8. aipromptbuilder:       Enables or disables AI Prompt Builder feature.
     9. device-recommendation: Enables or disables device recommendation feature.
     10. smartactions:         Enables or disables Smart Actions feature.
-    11. all
+    11. actions-ring:         Enables or disables Actions Ring feature.
+    12. all
     Press enter for none
     
     Enter your choices(e.g. 2 6, default is none):
