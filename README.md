@@ -129,8 +129,6 @@
 
 ## 贡献
 
-[![Powered by DartNode](https://dartnode.com/branding/DN-Open-Source-sm.png)](https://dartnode.com "Powered by DartNode - Free VPS for Open Source")
-
 欢迎提交问题和请求。您可以通过以下方式贡献代码：
 
 1. Fork 此仓库

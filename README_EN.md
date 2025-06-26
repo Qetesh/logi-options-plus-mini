@@ -28,6 +28,7 @@ This project customizes the Logi Options+ functionality through official install
   - logivoice: Logitech voice 
   - aipromptbuilder: AI Prompt Builder (macOS only)
   - smartactions
+  - actions-ring
   - device-recommendation: device recommendation (macOS only)
 - Easy-to-use
 
@@ -72,7 +73,8 @@ Download the latest version [here](https://github.com/Qetesh/logi-options-plus-m
      8. aipromptbuilder:       Enables or disables AI Prompt Builder feature.
      9. device-recommendation: Enables or disables device recommendation feature.
      10. smartactions:         Enables or disables Smart Actions feature.
-     11. all
+     11. actions-ring:         Enables or disables Actions Ring feature.
+     12. all
      Press enter for none
 
      Enter your choices(e.g. 2 6, default is none): 
@@ -100,7 +102,8 @@ Download the latest version [here](https://github.com/Qetesh/logi-options-plus-m
      8. aipromptbuilder:       Enables or disables AI Prompt Builder feature.
      9. device-recommendation: Enables or disables device recommendation feature.
      10. smartactions:         Enables or disables Smart Actions feature.
-     11. all
+     11. actions-ring:         Enables or disables Actions Ring feature.
+     12. all
      Press enter for none
 
      Enter your choices (e.g. 2 6, default is none):
