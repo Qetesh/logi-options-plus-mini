@@ -127,6 +127,12 @@
   <img src="https://contrib.rocks/image?repo=Qetesh/logi-options-plus-mini" />
 </a>
 
+
+![EdgeOne](https://edgeone.ai/media/34fe3a45-492d-4ea4-ae5d-ea1087ca7b4b.png)
+
+[CDN acceleration and security protection for this project are sponsored by Tencent EdgeOne.](https://edgeone.ai/?from=github)
+
+
 ## 贡献
 
 欢迎提交问题和请求。您可以通过以下方式贡献代码：
