@@ -3,12 +3,25 @@
     <channel>
         <title>Logi Options+ mini</title>
         <item>
-            <title>1.0</title>
-            <pubDate>Wed, 05 Mar 2025 16:44:16 +0800</pubDate>
-            <sparkle:version>8</sparkle:version>
-            <sparkle:shortVersionString>1.0</sparkle:shortVersionString>
+            <title>1.2</title>
+            <pubDate>Sat, 09 Aug 2025 18:04:55 +0800</pubDate>
+            <sparkle:version>10</sparkle:version>
+            <sparkle:shortVersionString>1.2</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/Qetesh/logi-options-plus-mini/releases/download/v1.0/Logi%20Options+%20mini.dmg" length="1917317" type="application/octet-stream" sparkle:edSignature="jUdTbBe4YSm2oTDsReCyTev7KMGRG2WcSVPsVOzoCUw77abyegGZHv6qChnCpcXy4BxR2r+HUePm06trOxcVCg=="/>
+            <enclosure url="https://github.com/Qetesh/logi-options-plus-mini/releases/download/v1.2/Logi%20Options+%20mini.dmg" length="2504784" type="application/octet-stream" sparkle:edSignature="lohhCC5bfRm6pAKvxTkD4EX2umbaSJwKm0fnIqSWqXyAsPZEZWF7EbPV6Y6U/bjpmQlLvyH9sRM5toEXAI2eBA=="/>
+            <description sparkle:format="plain-text">
+Logi Options+ mini 1.2 is now available! 🎉
+
+New Features:
+- Compatibility version 1.93.755983
+
+
+Recent Update:
+- Add Actions Ring feature
+- Add log level setting
+- UI improvements for macOS 26
+
+            </description>
         </item>
     </channel>
 </rss>
