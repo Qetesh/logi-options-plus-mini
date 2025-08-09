@@ -8,7 +8,7 @@
             <sparkle:version>10</sparkle:version>
             <sparkle:shortVersionString>1.2</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/Qetesh/logi-options-plus-mini/releases/download/v1.2/Logi%20Options+%20mini.dmg" length="2504784" type="application/octet-stream" sparkle:edSignature="lohhCC5bfRm6pAKvxTkD4EX2umbaSJwKm0fnIqSWqXyAsPZEZWF7EbPV6Y6U/bjpmQlLvyH9sRM5toEXAI2eBA=="/>
+            <enclosure url="https://github.com/Qetesh/logi-options-plus-mini/releases/download/v1.2/Logi.Options+.mini.dmg" length="2504784" type="application/octet-stream" sparkle:edSignature="lohhCC5bfRm6pAKvxTkD4EX2umbaSJwKm0fnIqSWqXyAsPZEZWF7EbPV6Y6U/bjpmQlLvyH9sRM5toEXAI2eBA=="/>
             <description sparkle:format="plain-text">
 Logi Options+ mini 1.2 is now available! 🎉
 
