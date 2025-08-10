@@ -9,9 +9,10 @@
 
 # Path.
 package="logioptionsplus_installer"
+unarchived_name="Logi Options+ Installer.app"
 downloaded_path="/private/tmp/logioptionsplus" #Path, from where the install operation happens.
 downloaded_package_path="$downloaded_path/$package.zip"
-package_unarchived_path="$downloaded_path/$package.app"
+package_unarchived_path="$downloaded_path/$unarchived_name"
 weburl="https://download01.logi.com/web/ftp/pub/techsupport/optionsplus/logioptionsplus_installer.zip"
 appname="Logi Options+"
 installer_name="logioptionsplus_installer"
@@ -23,6 +24,7 @@ echo "$(date) | Starting install of $appname"
 echo "##############################################################"
 echo ""
 echo "Please select the features you want to keep:"
+echo "0. quiet:                 Install the application silently without UI."
 echo "1. analytics:             Shows or hides choice for users to opt in to share app usage and diagnostics data."
 echo "2. flow:                  Shows or hides the Flow feature. Default value is Yes"
 echo "3. sso:                   Shows or hides ability for users to sign into the app."
@@ -41,6 +43,7 @@ echo ""
 read -p "Enter your choices(e.g. 2 6, default is none): " features
 
 # Initialize all options as "No"
+quiet="No"
 analytics="No"
 flow="No"
 sso="No"
@@ -53,8 +56,9 @@ device_recommendation="No"
 smartactions="No"
 actions_ring="No"
 
-# If "all" (11) is selected, set all options to "Yes"
-if [[ "$features" == *11* ]]; then
+# If "all" (12) is selected, set all options to "Yes"
+if [[ "$features" == *12* ]]; then
+  quiet="Yes"
   analytics="Yes"
   flow="Yes"
   sso="Yes"
@@ -70,6 +74,7 @@ else
   # Set selected options to "Yes"
   for feature in $features; do
     case $feature in
+      0) quiet="Yes" ;;
       1) analytics="Yes" ;;
       2) flow="Yes" ;;
       3) sso="Yes" ;;
@@ -88,6 +93,7 @@ fi
 
 
 echo "Please confirm the following settings:"
+echo "quiet:                    $quiet"
 echo "analytics:                $analytics"
 echo "flow:                     $flow"
 echo "sso:                      $sso"
@@ -127,19 +133,17 @@ package_unzip="$downloaded_path"
 echo "$(date) | Unarchiving $package_zip to $package_unzip..."
 ditto -x -k "$package_zip" "$package_unzip" || { echo "Failed to unzip installer"; exit 1; }
 
-pushd "$package_unarchived_path"
-
 # Configure backup
 echo "$(date) | Backing up existing configuration..."
-mv ~/Library/Application\ Support/LogiOptionsPlus ~/Library/Application\ Support/LogiOptionsPlus_bak
+mv ~/Library/"Application Support/LogiOptionsPlus" ~/Library/"Application Support/LogiOptionsPlus_bak"
 
 echo "$(date) | Uninstalling existing version of $appname"
 uninstall_command="$install_path --uninstall"
 echo "Executing: $uninstall_command"
-sudo $uninstall_command >> /dev/null 2>&1
+sudo "$install_path" --uninstall >> /dev/null 2>&1
 
 echo "$(date) | Restoring configuration from backup..."
-mv ~/Library/Application\ Support/LogiOptionsPlus_bak ~/Library/Application\ Support/LogiOptionsPlus
+mv ~/Library/"Application Support/LogiOptionsPlus_bak" ~/Library/"Application Support/LogiOptionsPlus"
 
 # Installing...
 # Change the following arguments to 'Yes' if you want to install the module.
@@ -147,11 +151,22 @@ mv ~/Library/Application\ Support/LogiOptionsPlus_bak ~/Library/Application\ Sup
 echo "$(date) | Installing $appname..."
 
 # Construct the install command with selected options
-install_command="$install_path --analytics $analytics --flow $flow --sso $sso --update $update --dfu $dfu --backlight $backlight --logivoice $logivoice --aipromptbuilder $aipromptbuilder --device-recommendation $device_recommendation --smartactions $smartactions --actions-ring $actions_ring"
+install_command="$install_path --quiet $quiet --analytics $analytics --flow $flow --sso $sso --update $update --dfu $dfu --backlight $backlight --logivoice $logivoice --aipromptbuilder $aipromptbuilder --device-recommendation $device_recommendation --smartactions $smartactions --actions-ring $actions_ring"
 echo "Executing: $install_command"
 
-sudo $install_command >> /dev/null 2>&1
-popd
+sudo "$install_path" \
+        --quiet $quiet \
+        --analytics $analytics \
+        --flow $flow \
+        --sso $sso \
+        --update $update \
+        --dfu $dfu \
+        --backlight $backlight \
+        --logivoice $logivoice \
+        --aipromptbuilder $aipromptbuilder \
+        --device-recommendation $device_recommendation \
+        --smartactions $smartactions \
+        --actions-ring $actions_ring >> /dev/null 2>&1
 
 if [ "$?" = "0" ]; then
     echo "$(date) | $appname Installed successfully."
