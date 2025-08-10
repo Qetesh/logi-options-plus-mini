@@ -43,7 +43,7 @@ echo ""
 read -p "Enter your choices(e.g. 2 6, default is none): " features
 
 # Initialize all options as "No"
-quiet="No"
+quiet=""
 analytics="No"
 flow="No"
 sso="No"
@@ -58,7 +58,6 @@ actions_ring="No"
 
 # If "all" (12) is selected, set all options to "Yes"
 if [[ "$features" == *12* ]]; then
-  quiet="Yes"
   analytics="Yes"
   flow="Yes"
   sso="Yes"
@@ -74,7 +73,7 @@ else
   # Set selected options to "Yes"
   for feature in $features; do
     case $feature in
-      0) quiet="Yes" ;;
+      0) quiet="--quiet" ;;
       1) analytics="Yes" ;;
       2) flow="Yes" ;;
       3) sso="Yes" ;;
@@ -151,11 +150,11 @@ mv ~/Library/"Application Support/LogiOptionsPlus_bak" ~/Library/"Application Su
 echo "$(date) | Installing $appname..."
 
 # Construct the install command with selected options
-install_command="$install_path --quiet $quiet --analytics $analytics --flow $flow --sso $sso --update $update --dfu $dfu --backlight $backlight --logivoice $logivoice --aipromptbuilder $aipromptbuilder --device-recommendation $device_recommendation --smartactions $smartactions --actions-ring $actions_ring"
+install_command="$install_path $quiet --analytics $analytics --flow $flow --sso $sso --update $update --dfu $dfu --backlight $backlight --logivoice $logivoice --aipromptbuilder $aipromptbuilder --device-recommendation $device_recommendation --smartactions $smartactions --actions-ring $actions_ring"
 echo "Executing: $install_command"
 
 sudo "$install_path" \
-        --quiet $quiet \
+        $quiet \
         --analytics $analytics \
         --flow $flow \
         --sso $sso \
@@ -171,8 +170,7 @@ sudo "$install_path" \
 if [ "$?" = "0" ]; then
     echo "$(date) | $appname Installed successfully."
     echo "$(date) | Cleaning Up"
-    rm -rf $package_zip $package_unzip $downloaded_path
-    echo "$(date) | $appname Installed successfully."
+    rm -rf $downloaded_path
     exit 0
 else
     # Something went wrong here, either the download failed or the install Failed
