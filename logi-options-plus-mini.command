@@ -14,6 +14,7 @@ downloaded_path="/private/tmp/logioptionsplus" #Path, from where the install ope
 downloaded_package_path="$downloaded_path/$package.zip"
 package_unarchived_path="$downloaded_path/$unarchived_name"
 weburl="https://download01.logi.com/web/ftp/pub/techsupport/optionsplus/logioptionsplus_installer.zip"
+weburl_cn="https://download.logitech.com.cn/web/ftp/pub/techsupport/optionsplus/logioptionsplus_installer.zip"
 appname="Logi Options+"
 installer_name="logioptionsplus_installer"
 install_path="$package_unarchived_path/Contents/MacOS/$installer_name"
@@ -122,9 +123,19 @@ echo "$(date) | Creating $downloaded_path directory..."
 mkdir -p logioptionsplus
 popd
 
+# Detect region
+echo "$(date) | Detecting region via https://cloudflare.com/cdn-cgi/trace"
+if trace_response=$(curl -s --connect-timeout 10 --max-time 10 "https://cloudflare.com/cdn-cgi/trace" 2>/dev/null) && echo "$trace_response" | grep -q "loc=CN"; then
+    echo "$(date) | Detected region: China, using CN download URL"
+    selected_weburl="$weburl_cn"
+else
+    echo "$(date) | Detected region: International (or detection failed), using default download URL"
+    selected_weburl="$weburl"
+fi
+
 # Downloading the Installer.
-echo "$(date) | Downloading $appname Installer..."
-curl -L -f -o "$downloaded_package_path" "$weburl" || { echo "Failed to download installer"; exit 1; }
+echo "$(date) | Downloading $appname Installer from: $selected_weburl"
+curl -L -f -o "$downloaded_package_path" "$selected_weburl" || { echo "Failed to download installer"; exit 1; }
 
 # Unzip the Installer.
 package_zip="$downloaded_package_path"
