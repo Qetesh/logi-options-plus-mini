@@ -3,6 +3,33 @@
     <channel>
         <title>Logi Options+ mini</title>
         <item>
+            <title>1.3</title>
+            <pubDate>Mon, 18 Aug 2025 02:58:33 +0800</pubDate>
+            <sparkle:version>12</sparkle:version>
+            <sparkle:shortVersionString>1.3</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/Qetesh/logi-options-plus-mini/releases/download/v1.3/Logi.Options+.mini.dmg" length="3244418" type="application/octet-stream" sparkle:edSignature="JQjh6Za32KxDCVqjn1/18n4jzLZKcteGQzeEm5/19PCN2YZqxqyODiX2N0XqtLPktW1t2JTJyre3QY05RzN7AQ=="/>
+            <description>
+                <![CDATA[
+                    <style>ul{margin-top: 0;margin-bottom: 7;padding-left: 18;}</style>
+                    <h4>Logi Options+ mini 1.3 is now available! 🎉</h4>
+                    <ul>
+                        <li>New background service option to skip repeated passwords</li>
+                        <li>Automatic region detection for installer download</li>
+                        <li>Quiet install support</li>
+                        <li>Bug fixes and improvements</li>
+                    </ul>
+                    <h4>Recent Update: </h4>
+                    <ul>
+                        <li>Compatibility update: v1.93.755983</li>
+                        <li>Added Actions Ring feature</li>
+                        <li>Added log level setting</li>
+                        <li>UI improvements for macOS 26</li>
+                    </ul>
+                ]]>
+            </description>
+        </item>
+        <item>
             <title>1.2</title>
             <pubDate>Sat, 09 Aug 2025 18:04:55 +0800</pubDate>
             <sparkle:version>10</sparkle:version>
@@ -10,17 +37,16 @@
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
             <enclosure url="https://github.com/Qetesh/logi-options-plus-mini/releases/download/v1.2/Logi.Options+.mini.dmg" length="2504784" type="application/octet-stream" sparkle:edSignature="lohhCC5bfRm6pAKvxTkD4EX2umbaSJwKm0fnIqSWqXyAsPZEZWF7EbPV6Y6U/bjpmQlLvyH9sRM5toEXAI2eBA=="/>
             <description sparkle:format="plain-text">
-Logi Options+ mini 1.2 is now available! 🎉
+                Logi Options+ mini 1.2 is now available! 🎉
 
-New Features:
-- Compatibility version 1.93.755983
+                New Features:
+                - Compatibility version 1.93.755983
 
 
-Recent Update:
-- Add Actions Ring feature
-- Add log level setting
-- UI improvements for macOS 26
-
+                Recent Update:
+                - Add Actions Ring feature
+                - Add log level setting
+                - UI improvements for macOS 26
             </description>
         </item>
     </channel>
