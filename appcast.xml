@@ -3,6 +3,33 @@
     <channel>
         <title>Logi Options+ mini</title>
         <item>
+            <title>1.3.1</title>
+            <pubDate>Wed, 27 Aug 2025 22:59:10 +0800</pubDate>
+            <sparkle:version>15</sparkle:version>
+            <sparkle:shortVersionString>1.3.1</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/Qetesh/logi-options-plus-mini/releases/download/v1.3.1/Logi.Options+.mini.dmg" length="3257780" type="application/octet-stream" sparkle:edSignature="Cn6P7d/7Qk9rarES/T2lNViyzTTldSJfdLPoDdxqSJ4ub4lMZQjltkZ2ydGkp3SL6/TxUURQy57xbERrc3zjDg=="/>
+            <description>
+                <![CDATA[
+                    <style>ul{margin-top: 0;margin-bottom: 7;padding-left: 18;}</style>
+                    <h4>Logi Options+ mini 1.3.1 is now available! 🎉</h4>
+                    <ul>
+                        <li>Compatibility update: v1.94.762104</li>
+                        <li>Bug fixes and improvements</li>
+                    </ul>
+                    <h4>Recent Update: </h4>
+                    <ul>
+                        <li>Quiet install support</li>
+                        <li>New background service option to skip repeated passwords</li>
+                        <li>Automatic region detection for installer download</li>
+                        <li>Added Actions Ring feature</li>
+                        <li>Added log level setting</li>
+                        <li>Compatibility for macOS 26</li>
+                    </ul>
+                ]]>
+            </description>
+        </item>
+        <item>
             <title>1.3</title>
             <pubDate>Mon, 18 Aug 2025 03:43:11 +0800</pubDate>
             <sparkle:version>13</sparkle:version>
