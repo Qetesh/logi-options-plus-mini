@@ -9,7 +9,7 @@
 
 # Path.
 package="logioptionsplus_installer"
-unarchived_name="Logi Options+ Installer.app"
+unarchived_name="logioptionsplus_installer.app"
 downloaded_path="/private/tmp/logioptionsplus" #Path, from where the install operation happens.
 downloaded_package_path="$downloaded_path/$package.zip"
 package_unarchived_path="$downloaded_path/$unarchived_name"
