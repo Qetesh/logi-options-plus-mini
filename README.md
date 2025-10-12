@@ -1,9 +1,15 @@
 # Logi Options Plus Mini
+
 [中文](README.md) | [English](README_EN.md)
 
 **Logi Options+ mini** 提供了一种选择来自定义 Logi Options+，方便用户能够更好地控制其功能。
 
-<img width="600" alt="image" src="https://github.com/user-attachments/assets/c20e0a5a-256d-4fa0-bc16-c972d32a4f51">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/user-attachments/assets/9b2d5fb2-d93b-4f34-8ab1-9429f3274211">
+  <source media="(prefers-color-scheme: light)" srcset="https://github.com/user-attachments/assets/2e90e454-610c-4729-bee8-02e78b9222db">
+  <img alt="miniflux AI summaries translations" src="https://github.com/user-attachments/assets/2e90e454-610c-4729-bee8-02e78b9222db" width="600" > 
+</picture>
+
 <img width="600" alt="image" src="https://github.com/Qetesh/logi-options-plus-mini/assets/4559341/d4c503a9-51d8-4a18-af90-a3f3be508e8b">
 <img width="600" alt="image" src="https://github.com/Qetesh/logi-options-plus-mini/assets/4559341/14a85961-b022-4fc9-99bf-6e30b071f54c">
 <img width="600" alt="image" src="https://github.com/Qetesh/logi-options-plus-mini/assets/4559341/bf97e703-d5d5-43d6-9236-6e1d06b7c0c8">
@@ -11,6 +17,7 @@
 <img width="600" alt="image" src="https://github.com/user-attachments/assets/d8918fd1-36f2-4933-9cc7-28471745139b">
 
 ## 项目简介
+
 参考官方[Logitech Options 软件的批量安装和配置](https://prosupport.logi.com/hc/zh-cn/articles/6046882446359-Logitech-Options-软件的批量安装和配置)
 
 项目通过官方安装包命令行选项定制化Logi Options+功能。
@@ -39,76 +46,79 @@
 
 下载最新版本 [here](https://v.qetesh.cc/d/Public/Logi%20Options%2B%20mini.dmg)
 
-[<img width="64" alt="logi option plus1" src="https://github.com/user-attachments/assets/2c57172a-b1e3-4bab-abb8-6c60425ca640" />](https://v.qetesh.cc/d/Public/Logi%20Options%2B%20mini.dmg)
+[`<img width="64" alt="logi option plus1" src="https://github.com/user-attachments/assets/2c57172a-b1e3-4bab-abb8-6c60425ca640" />`](https://v.qetesh.cc/d/Public/Logi%20Options%2B%20mini.dmg)
 
-🔔 由于没有使用开发者证书签署应用，macOS可能会显示安全警告，只需前往系统设置 → 隐私与安全 → 已阻止“Logi Options+mini”以保护Mac。然后点击“仍要打开”以运行该应用程序。
+🔔 由于没有使用开发者证书签署应用，macOS可能会显示安全警告，需前往系统设置 → 隐私与安全 → 已阻止“Logi Options+mini”以保护Mac。然后点击“仍要打开”以运行该应用程序。
 
 ![WX20250305-181838@2x](https://github.com/user-attachments/assets/ca75fad3-b1e6-4b51-ba2c-f4b8e5770fb7)
 
 ### 使用 macOS Shell
 
 1. 克隆此项目到本地
-    ```bash
-    git clone https://github.com/Qetesh/logi-options-plus-mini.git
-    cd logi-options-plus-mini
-    ```
 
-2. 运行Shell脚本（需要`sudo`权限卸载旧版本）
-  - macOS
-    ```bash
-    chmod u+x logi-options-plus-mini.command
-    ./logi-options-plus-mini.command
+   ```bash
+   git clone https://github.com/Qetesh/logi-options-plus-mini.git
+   cd logi-options-plus-mini
+   ```
+2. 运行Shell脚本（需要 `sudo`权限卸载旧版本）
 
-    ##############################################################
-    2024年12月15日 星期日 23时32分33秒 +08 | Starting install of Logi Options+
-    ##############################################################
-    
-    Please select the features you want to keep:
-    1. analytics:             Shows or hides choice for users to opt in to share app usage and diagnostics data.
-    2. flow:                  Shows or hides the Flow feature. Default value is Yes
-    3. sso:                   Shows or hides ability for users to sign into the app.
-    4. update:                Enables or disables app updates.
-    5. dfu:                   Enables or disables device firmware updates.
-    6. backlight:             Enables or disables keyboard backlight on the supported keyboards.
-    7. logivoice:             Enables or disables LogiVoice feature.
-    8. aipromptbuilder:       Enables or disables AI Prompt Builder feature.
-    9. device-recommendation: Enables or disables device recommendation feature.
-    10. smartactions:         Enables or disables Smart Actions feature.
-    11. actions-ring:         Enables or disables Actions Ring feature.
-    12. all
-    Press enter for none
-    
-    Enter your choices(e.g. 2 6, default is none): 
-    ```
-  - Windows（需要管理员终端运行一次`Set-ExecutionPolicy -ExecutionPolicy RemoteSigned`，具体见：[#5](https://github.com/Qetesh/logi-options-plus-mini/issues/5)）
+- macOS
 
-    右键ps1脚本，`使用PowerShell运行`
-    ```powershell
-    ##############################################################
-    12/17/2024 19:50:23 | Starting install of Logi Options+
-    ##############################################################
-    12/17/2024 19:50:24 | Downloading Logi Options+ Installer...
-    12/17/2024 19:51:06 | Download completed successfully.
-    12/17/2024 19:51:06 | Uninstalling existing version of Logi Options+...
-    
-    Please select the features you want to keep:
-    1. analytics:             Shows or hides choice for users to opt in to share app usage and diagnostics data.
-    2. flow:                  Shows or hides the Flow feature. Default value is Yes
-    3. sso:                   Shows or hides ability for users to sign into the app.
-    4. update:                Enables or disables app updates.
-    5. dfu:                   Enables or disables device firmware updates.
-    6. backlight:             Enables or disables keyboard backlight on the supported keyboards.
-    7. logivoice:             Enables or disables LogiVoice feature.
-    8. aipromptbuilder:       Enables or disables AI Prompt Builder feature.
-    9. device-recommendation: Enables or disables device recommendation feature.
-    10. smartactions:         Enables or disables Smart Actions feature.
-    11. actions-ring:         Enables or disables Actions Ring feature.
-    12. all
-    Press enter for none
-    
-    Enter your choices(e.g. 2 6, default is none):
+  ```bash
+  chmod u+x logi-options-plus-mini.command
+  ./logi-options-plus-mini.command
 
-    ```
+  ##############################################################
+  2024年12月15日 星期日 23时32分33秒 +08 | Starting install of Logi Options+
+  ##############################################################
+
+  Please select the features you want to keep:
+  1. analytics:             Shows or hides choice for users to opt in to share app usage and diagnostics data.
+  2. flow:                  Shows or hides the Flow feature. Default value is Yes
+  3. sso:                   Shows or hides ability for users to sign into the app.
+  4. update:                Enables or disables app updates.
+  5. dfu:                   Enables or disables device firmware updates.
+  6. backlight:             Enables or disables keyboard backlight on the supported keyboards.
+  7. logivoice:             Enables or disables LogiVoice feature.
+  8. aipromptbuilder:       Enables or disables AI Prompt Builder feature.
+  9. device-recommendation: Enables or disables device recommendation feature.
+  10. smartactions:         Enables or disables Smart Actions feature.
+  11. actions-ring:         Enables or disables Actions Ring feature.
+  12. all
+  Press enter for none
+
+  Enter your choices(e.g. 2 6, default is none): 
+  ```
+- Windows（需要管理员终端运行一次 `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned`，具体见：[#5](https://github.com/Qetesh/logi-options-plus-mini/issues/5)）
+
+  右键ps1脚本，`使用PowerShell运行`
+
+  ```powershell
+  ##############################################################
+  12/17/2024 19:50:23 | Starting install of Logi Options+
+  ##############################################################
+  12/17/2024 19:50:24 | Downloading Logi Options+ Installer...
+  12/17/2024 19:51:06 | Download completed successfully.
+  12/17/2024 19:51:06 | Uninstalling existing version of Logi Options+...
+
+  Please select the features you want to keep:
+  1. analytics:             Shows or hides choice for users to opt in to share app usage and diagnostics data.
+  2. flow:                  Shows or hides the Flow feature. Default value is Yes
+  3. sso:                   Shows or hides ability for users to sign into the app.
+  4. update:                Enables or disables app updates.
+  5. dfu:                   Enables or disables device firmware updates.
+  6. backlight:             Enables or disables keyboard backlight on the supported keyboards.
+  7. logivoice:             Enables or disables LogiVoice feature.
+  8. aipromptbuilder:       Enables or disables AI Prompt Builder feature.
+  9. device-recommendation: Enables or disables device recommendation feature.
+  10. smartactions:         Enables or disables Smart Actions feature.
+  11. actions-ring:         Enables or disables Actions Ring feature.
+  12. all
+  Press enter for none
+
+  Enter your choices(e.g. 2 6, default is none):
+
+  ```
 
 脚本将会自动下载官方安装包，并进行精简安装。
 
@@ -119,7 +129,8 @@
 - 网络连接以下载官方安装包
 
 ## FAQ
-- 部分Mac无法使用官方方式卸载，需使用第三方工具卸载后重新运行。已测试使用`Pearcleaner`卸载后可正常运行安装
+
+- 部分Mac无法使用官方方式卸载，需使用第三方工具卸载后重新运行。已测试使用 `Pearcleaner`卸载后可正常运行安装
 
 ### Contributors
 
@@ -127,11 +138,9 @@
   <img src="https://contrib.rocks/image?repo=Qetesh/logi-options-plus-mini" />
 </a>
 
-
 ![EdgeOne](https://edgeone.ai/media/34fe3a45-492d-4ea4-ae5d-ea1087ca7b4b.png)
 
 [CDN acceleration and security protection for this project are sponsored by Tencent EdgeOne.](https://edgeone.ai/?from=github)
-
 
 ## 贡献
 

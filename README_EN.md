@@ -3,7 +3,12 @@
 
 **Logi Options+ mini** Provides an option to customize Logi Options+ so that the user can better control its functions.
 
-<img width="600" alt="image" src="https://github.com/user-attachments/assets/c20e0a5a-256d-4fa0-bc16-c972d32a4f51">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/user-attachments/assets/9b2d5fb2-d93b-4f34-8ab1-9429f3274211">
+  <source media="(prefers-color-scheme: light)" srcset="https://github.com/user-attachments/assets/2e90e454-610c-4729-bee8-02e78b9222db">
+  <img alt="miniflux AI summaries translations" src="https://github.com/user-attachments/assets/2e90e454-610c-4729-bee8-02e78b9222db" width="600" > 
+</picture>
+
 <img width="600" alt="image" src="https://github.com/Qetesh/logi-options-plus-mini/assets/4559341/d4c503a9-51d8-4a18-af90-a3f3be508e8b">
 <img width="600" alt="image" src="https://github.com/Qetesh/logi-options-plus-mini/assets/4559341/14a85961-b022-4fc9-99bf-6e30b071f54c">
 <img width="600" alt="image" src="https://github.com/Qetesh/logi-options-plus-mini/assets/4559341/bf97e703-d5d5-43d6-9236-6e1d06b7c0c8">
