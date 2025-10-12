@@ -3,6 +3,35 @@
     <channel>
         <title>Logi Options+ mini</title>
         <item>
+            <title>1.5</title>
+            <pubDate>Fri, 11 Oct 2025 00:00:00 +0800</pubDate>
+            <sparkle:version>16</sparkle:version>
+            <sparkle:shortVersionString>1.5</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/Qetesh/logi-options-plus-mini/releases/download/v1.5/Logi.Options+.mini.dmg" length="3345463" type="application/octet-stream" sparkle:edSignature="f7FDz8bdg1P6LF+0YWNA5d4M/AhKeOXR1h6rKsGwqpbZ+6gNLooq5hG/EIiUPoJpmIlvYsRyg9JwZtxhXVJSCA=="/>
+            <description>
+                <![CDATA[
+                    <style>ul{margin-top: 0;margin-bottom: 7;padding-left: 18;}</style>
+                    <h4>🎉 Logi Options+ mini 1.5 is now available!</h4>
+                    <ul>
+                        <li>Chinese language support</li>
+                        <li>Improved macOS 26 Glass effect compatibility</li>
+                        <li>Improved quiet installation logic</li>
+                        <li>Bug fixes and general improvements</li>
+                    </ul>
+                    <h4>🔄 Recent Updates:</h4>
+                    <ul>
+                        <li>Added quiet install support</li>
+                        <li>New background service to skip repeated password prompts</li>
+                        <li>Automatic region detection for installer downloads</li>
+                        <li>New “Actions Ring” feature</li>
+                        <li>Added log level setting</li>
+                        <li>macOS 26 compatibility updates</li>
+                    </ul>
+                ]]>
+            </description>
+        </item>
+        <item>
             <title>1.3.1</title>
             <pubDate>Wed, 27 Aug 2025 22:59:10 +0800</pubDate>
             <sparkle:version>15</sparkle:version>
@@ -17,7 +46,7 @@
                         <li>Compatibility update: v1.94.762104</li>
                         <li>Bug fixes and improvements</li>
                     </ul>
-                    <h4>Recent Update: </h4>
+                    <h4>Recent Updates: </h4>
                     <ul>
                         <li>Quiet install support</li>
                         <li>New background service option to skip repeated passwords</li>
@@ -46,7 +75,7 @@
                         <li>Quiet install support</li>
                         <li>Bug fixes and improvements</li>
                     </ul>
-                    <h4>Recent Update: </h4>
+                    <h4>Recent Updates: </h4>
                     <ul>
                         <li>Compatibility update: v1.93.755983</li>
                         <li>Added Actions Ring feature</li>
@@ -70,7 +99,7 @@
                 - Compatibility version 1.93.755983
 
 
-                Recent Update:
+                Recent Updates:
                 - Add Actions Ring feature
                 - Add log level setting
                 - UI improvements for macOS 26
