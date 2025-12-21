@@ -3,6 +3,33 @@
     <channel>
         <title>Logi Options+ mini</title>
         <item>
+            <title>1.6</title>
+            <pubDate>Sun, 21 Dec 2025 23:59:58 +0800</pubDate>
+            <sparkle:version>17</sparkle:version>
+            <sparkle:shortVersionString>1.6</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/Qetesh/logi-options-plus-mini/releases/download/v1.6/Logi.Options+.mini.dmg" length="3310884" type="application/octet-stream" sparkle:edSignature="HjVRazg2tPbmY+aPpZekri33czlDQFp5pFUMZR0KncCpXP2ySijf07KbhpOtsMRfkoq8+vIGztUpM0ujl6NABg=="/>
+            <description>
+                <![CDATA[
+                    <style>ul{margin-top: 0;margin-bottom: 7;padding-left: 18;}</style>
+                    <h4>🎉 Logi Options+ mini 1.6 is now available!</h4>
+                    <ul>
+                        <li>Better installation progress tracking with step-by-step feedback</li>
+                        <li>Bug fixes and general improvements</li>
+                    </ul>
+                    <h4>🔄 Recent Updates:</h4>
+                    <ul>
+                        <li>Chinese language support</li>
+                        <li>New background service to skip repeated password prompts</li>
+                        <li>Automatic region detection for installer downloads</li>
+                        <li>New "Actions Ring", "quiet install" feature</li>
+                        <li>Added log level setting</li>
+                        <li>macOS 26 compatibility updates</li>
+                    </ul>
+                ]]>
+            </description>
+        </item>
+        <item>
             <title>1.5</title>
             <pubDate>Fri, 11 Oct 2025 00:00:00 +0800</pubDate>
             <sparkle:version>16</sparkle:version>
@@ -24,7 +51,7 @@
                         <li>Added quiet install support</li>
                         <li>New background service to skip repeated password prompts</li>
                         <li>Automatic region detection for installer downloads</li>
-                        <li>New “Actions Ring” feature</li>
+                        <li>New "Actions Ring" feature</li>
                         <li>Added log level setting</li>
                         <li>macOS 26 compatibility updates</li>
                     </ul>
