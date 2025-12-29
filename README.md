@@ -46,7 +46,7 @@
 
 下载最新版本 [here](https://v.qetesh.cc/d/Public/Logi%20Options%2B%20mini.dmg)
 
-[`<img width="64" alt="logi option plus1" src="https://github.com/user-attachments/assets/2c57172a-b1e3-4bab-abb8-6c60425ca640" />`](https://v.qetesh.cc/d/Public/Logi%20Options%2B%20mini.dmg)
+[<img width="64" alt="logi option plus1" src="https://github.com/user-attachments/assets/2c57172a-b1e3-4bab-abb8-6c60425ca640" />](https://v.qetesh.cc/d/Public/Logi%20Options%2B%20mini.dmg)
 
 🔔 由于没有使用开发者证书签署应用，macOS可能会显示安全警告，需前往系统设置 → 隐私与安全 → 已阻止“Logi Options+mini”以保护Mac。然后点击“仍要打开”以运行该应用程序。
 
@@ -137,10 +137,6 @@
 <a href="https://github.com/Qetesh/logi-options-plus-mini/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=Qetesh/logi-options-plus-mini" />
 </a>
-
-![EdgeOne](https://edgeone.ai/media/34fe3a45-492d-4ea4-ae5d-ea1087ca7b4b.png)
-
-[CDN acceleration and security protection for this project are sponsored by Tencent EdgeOne.](https://edgeone.ai/?from=github)
 
 ## 贡献
 
