@@ -3,6 +3,42 @@
     <channel>
         <title>Logi Options+ mini</title>
         <item>
+            <title>1.8</title>
+            <pubDate>Sat, 10 Jan 2026 14:12:57 +0800</pubDate>
+            <sparkle:version>18</sparkle:version>
+            <sparkle:shortVersionString>1.8</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/Qetesh/logi-options-plus-mini/releases/download/v1.8/Logi.Options+.mini.dmg" length="3387993" type="application/octet-stream" sparkle:edSignature="3PGvv2DAoSTurh8rM4xatcLcj8AfKGUPZvsqs7A1nuZuEGEwe7C4YUl1a9LQkwlaMZIAdosgK0292alUQ5KjDw=="/>
+            <description>
+                <![CDATA[
+                    <style>ul{margin-top: 0;margin-bottom: 7;padding-left: 18;}</style>
+                    <h4>🎉 Logi Options+ mini 1.8 is now available!</h4>
+		            <p style="color:#888;font-size:12px;margin:0 0 8px;">Released: 2026-01-10</p>
+                    <ul>
+                        <li>Added permission checker, fix permission issues</li>
+                        <li>Added patch program to fix startup errors, JavaScript errors</li>
+                        <li>Bug fixes and general improvements</li>
+                    </ul>
+                    <hr>
+                    <h4>🎉 Logi Options+ mini 1.6 is now available!</h4>
+                    <p style="color:#888;font-size:12px;margin:0 0 8px;">Released: 2025-12-21</p>
+                    <ul>
+                        <li>Better installation progress tracking with step-by-step feedback</li>
+                        <li>Bug fixes and general improvements</li>
+                    </ul>
+                    <h4>🔄 Recent Updates:</h4>
+                    <ul>
+                        <li>Chinese language support</li>
+                        <li>New background service to skip repeated password prompts</li>
+                        <li>Automatic region detection for installer downloads</li>
+                        <li>New "Actions Ring", "quiet install" feature</li>
+                        <li>Added log level setting</li>
+                        <li>macOS 26 compatibility updates</li>
+                    </ul>
+                ]]>
+            </description>
+        </item>
+        <item>
             <title>1.6</title>
             <pubDate>Sun, 21 Dec 2025 23:59:58 +0800</pubDate>
             <sparkle:version>17</sparkle:version>

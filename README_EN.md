@@ -4,9 +4,9 @@
 **Logi Options+ mini** Provides an option to customize Logi Options+ so that the user can better control its functions.
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/user-attachments/assets/b39ddb4c-1f27-4673-9221-09c5f9e28b3d">
-  <source media="(prefers-color-scheme: light)" srcset="https://github.com/user-attachments/assets/69ab444b-b9c0-4ee0-a889-bc4861313608">
-  <img alt="Logi Options+ mini" src="https://github.com/user-attachments/assets/69ab444b-b9c0-4ee0-a889-bc4861313608" width="600" > 
+  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/user-attachments/assets/11adddd4-bf0e-4e6d-b164-483b2521e228">
+  <source media="(prefers-color-scheme: light)" srcset="https://github.com/user-attachments/assets/86024914-4650-4966-ba81-77d59fee5696">
+  <img alt="Logi Options+ mini" src="https://github.com/user-attachments/assets/86024914-4650-4966-ba81-77d59fee5696" width="600" > 
 </picture>
 
 <img width="600" alt="image" src="https://github.com/Qetesh/logi-options-plus-mini/assets/4559341/d4c503a9-51d8-4a18-af90-a3f3be508e8b">
