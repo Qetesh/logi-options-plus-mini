@@ -279,38 +279,37 @@ impl Installer {
     /// Poll the registry (and filesystem) until the application is no longer
     /// detected as installed, confirming the uninstall process has finished.
     async fn wait_for_uninstall_complete(&self, app: &tauri::AppHandle) {
-        const MAX_ATTEMPTS: u32 = 120; // up to ~120s
+        const MAX_ATTEMPTS: u32 = 300; // up to ~300s
         const POLL_INTERVAL: std::time::Duration = std::time::Duration::from_secs(1);
 
         emit_log_internal(
             app,
-            "Waiting for uninstall to complete (polling registry)...",
+            &format!(
+                "Waiting for uninstall to complete (timeout: {}s)...",
+                MAX_ATTEMPTS
+            ),
             "info",
         );
 
-        for attempt in 1..=MAX_ATTEMPTS {
+        for _attempt in 1..=MAX_ATTEMPTS {
             tokio::time::sleep(POLL_INTERVAL).await;
 
             let status = get_installed_version_with_app(Some(app));
             if status == "not installed" {
-                emit_log_internal(
-                    app,
-                    &format!("Uninstall confirmed complete after {} attempt(s)", attempt),
-                    "info",
-                );
+                emit_log_internal(app, "Uninstall complete.", "info");
+                // Extra wait after uninstall so files/registry are fully
+                // released before any subsequent action (e.g. reinstall).
+                tokio::time::sleep(std::time::Duration::from_secs(10)).await;
                 return;
             }
-
-            emit_log_internal(
-                app,
-                &format!("Still uninstalling... (attempt {}, status: {})", attempt, status),
-                "debug",
-            );
         }
 
         emit_log_internal(
             app,
-            "Uninstall wait timed out after polling; continuing anyway.",
+            &format!(
+                "Uninstall wait timed out after {}s; continuing anyway.",
+                MAX_ATTEMPTS
+            ),
             "warn",
         );
     }

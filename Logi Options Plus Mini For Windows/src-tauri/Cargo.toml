@@ -1,6 +1,6 @@
 [package]
 name = "logi-options-plus-mini"
-version = "2.0.0"
+version = "2.1.0"
 description = "Logi Options+ mini"
 authors = ["Qetesh"]
 edition = "2024"
