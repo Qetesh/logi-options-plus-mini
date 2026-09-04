@@ -35,7 +35,6 @@ class InstallerController: NSObject, ObservableObject {
         .dfu: "--dfu",
         .backlight: "--backlight",
         .logivoice: "--logivoice",
-        .aipromptbuilder: "--aipromptbuilder",
         .deviceRecommendation: "--device-recommendation",
         .smartactions: "--smartactions",
         .actionsRing: "--actions-ring"

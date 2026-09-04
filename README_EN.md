@@ -54,7 +54,7 @@ This project customizes the Logi Options+ functionality through official install
   - update: application updates
   - dfu: device firmware updates
   - logivoice: Logitech voice 
-  - aipromptbuilder: AI Prompt Builder (macOS only)
+  - aipromptbuilder: AI Prompt Builder (Windows only)
   - smartactions
   - actions-ring
   - device-recommendation: device recommendation (macOS only)
@@ -98,11 +98,10 @@ Download the Windows installer from [GitHub Releases](https://github.com/Qetesh/
      5. dfu:                   Enables or disables device firmware updates.
      6. backlight:             Enables or disables keyboard backlight on the supported keyboards.
      7. logivoice:             Enables or disables LogiVoice feature.
-     8. aipromptbuilder:       Enables or disables AI Prompt Builder feature.
-     9. device-recommendation: Enables or disables device recommendation feature.
-     10. smartactions:         Enables or disables Smart Actions feature.
-     11. actions-ring:         Enables or disables Actions Ring feature.
-     12. all
+     8. device-recommendation: Enables or disables device recommendation feature.
+     9. smartactions:          Enables or disables Smart Actions feature.
+     10. actions-ring:         Enables or disables Actions Ring feature.
+     11. all
      Press enter for none
 
      Enter your choices(e.g. 2 6, default is none): 

@@ -33,11 +33,10 @@ echo "4. update:                Enables or disables app updates."
 echo "5. dfu:                   Enables or disables device firmware updates."
 echo "6. backlight:             Enables or disables keyboard backlight on the supported keyboards."
 echo "7. logivoice:             Enables or disables LogiVoice feature."
-echo "8. aipromptbuilder:       Enables or disables AI Prompt Builder feature."
-echo "9. device-recommendation: Enables or disables device recommendation feature."
-echo "10. smartactions:         Enables or disables Smart Actions feature."
-echo "11. actions-ring:         Enables or disables Actions Ring feature."
-echo "12. all"
+echo "8. device-recommendation: Enables or disables device recommendation feature."
+echo "9. smartactions:          Enables or disables Smart Actions feature."
+echo "10. actions-ring:         Enables or disables Actions Ring feature."
+echo "11. all"
 echo "Press enter for none"
 echo ""
 
@@ -52,13 +51,12 @@ update="No"
 dfu="No"
 backlight="No"
 logivoice="No"
-aipromptbuilder="No"
 device_recommendation="No"
 smartactions="No"
 actions_ring="No"
 
-# If "all" (12) is selected, set all options to "Yes"
-if [[ "$features" == *12* ]]; then
+# If "all" (11) is selected, set all options to "Yes"
+if [[ "$features" == *11* ]]; then
   analytics="Yes"
   flow="Yes"
   sso="Yes"
@@ -66,7 +64,6 @@ if [[ "$features" == *12* ]]; then
   dfu="Yes"
   backlight="Yes"
   logivoice="Yes"
-  aipromptbuilder="Yes"
   device_recommendation="Yes"
   smartactions="Yes"
   actions_ring="Yes"
@@ -82,10 +79,9 @@ else
       5) dfu="Yes" ;;
       6) backlight="Yes" ;;
       7) logivoice="Yes" ;;
-      8) aipromptbuilder="Yes" ;;
-      9) device_recommendation="Yes" ;;
-      10) smartactions="Yes" ;;
-      11) actions_ring="Yes" ;;
+      8) device_recommendation="Yes" ;;
+      9) smartactions="Yes" ;;
+      10) actions_ring="Yes" ;;
       *) echo "Invalid option: $feature";;
     esac
   done
@@ -101,7 +97,6 @@ echo "update:                   $update"
 echo "dfu:                      $dfu"
 echo "backlight:                $backlight"
 echo "logivoice:                $logivoice"
-echo "aipromptbuilder:          $aipromptbuilder"
 echo "device-recommendation:    $device_recommendation"
 echo "smartactions:             $smartactions"
 echo "actions-ring:             $actions_ring"
@@ -157,11 +152,11 @@ mv ~/Library/"Application Support/LogiOptionsPlus_bak" ~/Library/"Application Su
 
 # Installing...
 # Change the following arguments to 'Yes' if you want to install the module.
-# disable analytics,flow,sso,update,dfu,logivoice,aipromptbuilder,device-recommendation,smartactions
+# disable analytics,flow,sso,update,dfu,logivoice,device-recommendation,smartactions
 echo "$(date) | Installing $appname..."
 
 # Construct the install command with selected options
-install_command="$install_path $quiet --analytics $analytics --flow $flow --sso $sso --update $update --dfu $dfu --backlight $backlight --logivoice $logivoice --aipromptbuilder $aipromptbuilder --device-recommendation $device_recommendation --smartactions $smartactions --actions-ring $actions_ring"
+install_command="$install_path $quiet --analytics $analytics --flow $flow --sso $sso --update $update --dfu $dfu --backlight $backlight --logivoice $logivoice --device-recommendation $device_recommendation --smartactions $smartactions --actions-ring $actions_ring"
 echo "Executing: $install_command"
 
 sudo "$install_path" \
@@ -173,7 +168,6 @@ sudo "$install_path" \
         --dfu $dfu \
         --backlight $backlight \
         --logivoice $logivoice \
-        --aipromptbuilder $aipromptbuilder \
         --device-recommendation $device_recommendation \
         --smartactions $smartactions \
         --actions-ring $actions_ring >> /dev/null 2>&1
