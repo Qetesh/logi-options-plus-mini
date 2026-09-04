@@ -9,9 +9,11 @@ enum Feature: String, CaseIterable {
     case dfu = "dfu"
     case backlight = "backlight"
     case logivoice = "logivoice"
+    case aipromptbuilder = "aipromptbuilder"
     case deviceRecommendation = "device-recommendation"
     case smartactions = "smartactions"
     case actionsRing = "actions-ring"
+    case installAdobePlugins = "install-adobe-plugins"
     
     var description: String {
         switch self {
@@ -23,9 +25,11 @@ enum Feature: String, CaseIterable {
         case .dfu: return "DFU"
         case .backlight: return "Backlight"
         case .logivoice: return "LogiVoice"
+        case .aipromptbuilder: return "AI Prompt Builder"
         case .deviceRecommendation: return "Device Recommendation"
         case .smartactions: return "Smart Actions"
         case .actionsRing: return "Actions Ring"
+        case .installAdobePlugins: return "Adobe Plugins"
         }
     }
     
@@ -39,9 +43,11 @@ enum Feature: String, CaseIterable {
         case .dfu: return String(localized: "Enables or disables device firmware updates. Default value is Yes.")
         case .backlight: return String(localized: "Enables or disables keyboard backlight on the supported keyboards. Default value is Yes.")
         case .logivoice: return String(localized: "Enables or disables LogiVoice feature. Default value is Yes.")
+        case .aipromptbuilder: return String(localized: "Enables or disables AI Prompt Builder feature. Default value is Yes.")
         case .deviceRecommendation: return String(localized: "Enables or disables device recommendation feature. Default value is Yes.")
         case .smartactions: return String(localized: "Enables or disables Smart Actions feature. Default value is Yes.")
         case .actionsRing: return String(localized: "Enables or disables Actions Ring feature. Default value is Yes.")
+        case .installAdobePlugins: return String(localized: "Installs all Adobe plugins (Lightroom, Illustrator, Photoshop and Premiere Pro).")
         }
     }
 }

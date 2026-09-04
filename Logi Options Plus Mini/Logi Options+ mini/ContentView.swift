@@ -63,7 +63,7 @@ struct ContentView: View {
             }
             .background(VisualEffectView().ignoresSafeArea())
         }
-        .frame(minWidth: 950, minHeight: 550, maxHeight: 550)
+        .frame(minWidth: 850, minHeight: 552)
     }
     
     private func toggleSidebar() {

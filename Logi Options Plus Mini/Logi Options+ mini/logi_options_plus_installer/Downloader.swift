@@ -66,7 +66,7 @@ enum DownloadType {
 }
 
 class Downloader: NSObject, URLSessionDownloadDelegate {
-    private let regionDetector = RegionDetector()
+    private let regionDetector = RegionDetector.shared
     private var progressHandler: (@Sendable (Double) -> Void)?
     private var downloadContinuation: CheckedContinuation<Void, Error>?
     private var destinationURL: URL?
@@ -82,8 +82,7 @@ class Downloader: NSObject, URLSessionDownloadDelegate {
         if type.supportsRegionalDownloadSource {
             switch InstallerDownloadSource.current {
             case .automatic:
-                await regionDetector.detectRegion()
-                isInChina = regionDetector.isInChina
+                isInChina = await regionDetector.detectRegion()
             case .global:
                 isInChina = false
                 Logger.app.info("🌐 \(String(localized: "Download source")): \(String(localized: "Global"))")

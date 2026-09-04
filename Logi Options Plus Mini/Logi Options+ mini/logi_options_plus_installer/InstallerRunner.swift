@@ -4,10 +4,72 @@ import AppKit
 
 class InstallerRunner {
     func runInstaller(selectedFeatures: String, type: DownloadType = .installer) async throws {
-        let installerURL = FileUtils.temporaryFileURL(
+        let installerURL = installerExecutableURL(for: type)
+        try await runExecutable(at: installerURL, arguments: selectedFeatures, isPatch: false)
+    }
+
+    func supportedArguments(for candidates: [String], type: DownloadType = .installer) async throws -> Set<String> {
+        try await readSupportedArguments(at: installerExecutableURL(for: type), candidates: candidates)
+    }
+
+    /// Read help as the current user, without launching an installation or requesting admin access.
+    func readSupportedArguments(at installerURL: URL, candidates: [String]) async throws -> Set<String> {
+        try prepareExecutable(at: installerURL)
+        Logger.app.info("\(String(localized: "Checking supported installer arguments..."))")
+
+        return try await withCheckedThrowingContinuation { continuation in
+            DispatchQueue.global(qos: .userInitiated).async {
+                do {
+                    let process = Process()
+                    let pipe = Pipe()
+                    process.executableURL = installerURL
+                    process.arguments = ["--help"]
+                    process.standardOutput = pipe
+                    process.standardError = pipe
+                    defer { pipe.fileHandleForReading.closeFile() }
+
+                    try process.run()
+                    // Drain both streams before waiting so verbose installer logs cannot fill the pipe.
+                    let data = pipe.fileHandleForReading.readDataToEndOfFile()
+                    process.waitUntilExit()
+
+                    let output = String(decoding: data, as: UTF8.self)
+                    Logger.app.debug("Installer --help (exit \(process.terminationStatus)):\n\(output)")
+                    // Some versions emit shutdown errors after printing usable help.
+                    let arguments = try Self.findSupportedArguments(in: output, candidates: candidates)
+                    continuation.resume(returning: arguments)
+                } catch {
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+    static func findSupportedArguments(in output: String, candidates: [String]) throws -> Set<String> {
+        // Search the complete output without depending on the help text's layout.
+        let arguments = Set(candidates.filter { output.contains($0) })
+
+        guard !arguments.isEmpty else {
+            throw NSError(domain: "InstallerRunner", code: 6, userInfo: [
+                NSLocalizedDescriptionKey: String(localized: "Could not read supported arguments from installer help.")
+            ])
+        }
+        return arguments
+    }
+
+    private func installerExecutableURL(for type: DownloadType) -> URL {
+        FileUtils.temporaryFileURL(
             forFileName: "\(type.extractionDirectoryName)/\(type.installerAppBundleName)/Contents/MacOS/logioptionsplus_installer"
         )
-        try await runExecutable(at: installerURL, arguments: selectedFeatures, isPatch: false)
+    }
+
+    private func prepareExecutable(at installerURL: URL) throws {
+        guard FileManager.default.fileExists(atPath: installerURL.path) else {
+            Logger.app.error("\(String(localized: "Installer not found")): \(installerURL.path)")
+            throw NSError(domain: "InstallerNotFound", code: 0, userInfo: [NSLocalizedDescriptionKey: "Installer not found"])
+        }
+
+        try FileManager.default.setAttributes([.posixPermissions: 0o755], ofItemAtPath: installerURL.path)
     }
     
     func runPatch() async throws {
@@ -40,12 +102,7 @@ class InstallerRunner {
     }
     
     private func runExecutable(at installerURL: URL, arguments: String, isPatch: Bool) async throws {
-        guard FileManager.default.fileExists(atPath: installerURL.path) else {
-            Logger.app.error("\(String(localized: "Installer not found")): \(installerURL.path)")
-            throw NSError(domain: "InstallerNotFound", code: 0, userInfo: [NSLocalizedDescriptionKey: "Installer not found"])
-        }
-    
-        try FileManager.default.setAttributes([.posixPermissions: 0o755], ofItemAtPath: installerURL.path)
+        try prepareExecutable(at: installerURL)
         
         if isPatch {
             Logger.app.info("🔧 \(String(localized: "Running fix patch..."))")

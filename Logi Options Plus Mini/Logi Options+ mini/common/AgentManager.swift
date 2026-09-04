@@ -146,7 +146,9 @@ class AgentManager: ObservableObject {
             }
             
             connection.invalidationHandler = {
-                Logger.app.debug("\(String(localized: "XPC connection invalidated"))")
+                // Also called when we explicitly close a completed request's connection.
+                // This describes the connection lifecycle, not whether the agent is running.
+                Logger.app.debug("\(String(localized: "XPC connection closed"))")
             }
             
             connection.resume()
@@ -276,7 +278,7 @@ class AgentManager: ObservableObject {
             }
             
             connection.invalidationHandler = {
-                Logger.app.trace("\(String(localized: "Connection to app helper closed normally"))")
+                Logger.app.trace("\(String(localized: "XPC connection closed"))")
             }
             
             connection.resume()

@@ -34,23 +34,30 @@ struct LogiOptionsPlusView: View {
                 
                 List {
                     ForEach(controller.features, id: \.self) { feature in
-                        Toggle(feature.description, isOn: Binding(
-                            get: { controller.selectedFeatures.contains(feature) },
-                            set: { isSelected in
-                                if isSelected {
-                                    controller.selectedFeatures.insert(feature)
-                                } else {
-                                    controller.selectedFeatures.remove(feature)
+                        HStack {
+                            Toggle(feature.description, isOn: Binding(
+                                get: { controller.selectedFeatures.contains(feature) },
+                                set: { isSelected in
+                                    if isSelected {
+                                        controller.selectedFeatures.insert(feature)
+                                    } else {
+                                        controller.selectedFeatures.remove(feature)
+                                    }
+                                    controller.saveSelectedFeatures()
                                 }
-                                controller.saveSelectedFeatures()
-                            }
-                        ))
-                        .help(feature.help)
+                            ))
+                            .disabled(controller.unsupportedFeatures.contains(feature))
+                            .foregroundStyle(controller.unsupportedFeatures.contains(feature) ? .secondary : .primary)
+                        }
+                        // Keep the tooltip on an enabled container so unavailable toggles still explain why.
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .contentShape(Rectangle())
+                        .help(controller.helpText(for: feature))
                     }
                 }
                 .scrollContentBackground(.hidden)
                 .background(.thinMaterial)
-                .frame(minHeight: 320)
+                .frame(minHeight: 320, maxHeight: .infinity)
                 .cornerRadius(10)
                 .glass(
                     radius: 10,
@@ -276,8 +283,6 @@ struct LogiOptionsPlusView: View {
                 
                 // Installation progress indicator - always visible, click to toggle activity log drawer
                 InstallationProgressView(controller: controller, showActivityLog: $controller.showActivityLog)
-                
-                Spacer(minLength: 0)
             }
             .padding()
             .zIndex(0)
@@ -314,7 +319,7 @@ struct LogiOptionsPlusView: View {
                 .zIndex(20)
             }
         }
-        .frame(minWidth: 600, minHeight: 460, maxHeight: 460)
+        .frame(minWidth: 600, minHeight: 460, maxHeight: .infinity)
         .task {
             controller.loadSelectedFeatures()
             await fetchLatestVersion()

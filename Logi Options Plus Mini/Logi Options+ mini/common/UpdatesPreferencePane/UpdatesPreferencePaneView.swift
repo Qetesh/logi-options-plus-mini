@@ -39,6 +39,20 @@ struct UpdatesPreferencePane: View {
         )
     }
 
+    // Only user interaction writes back to Sparkle; onAppear merely reads its current state.
+    private var autoInstallationBinding: Binding<Bool> {
+        Binding(
+            get: { autoInstallation },
+            set: { newValue in
+                guard newValue != autoInstallation else { return }
+                autoInstallation = newValue
+                UpdaterManager.shared.setAutomaticallyChecksForUpdates(newValue)
+                Logger.app.info("\(String(localized: "Auto-update")) \(newValue ? String(localized: "enabled") : String(localized: "disabled"))")
+                Logger.app.debug("\(String(localized: "Update check frequency")): \(String(localized: "every")) \(Int(updater.updateCheckInterval/3600)) \(String(localized: "hours"))")
+            }
+        )
+    }
+
     private var serverDescription: String {
         switch selectedServer {
         case .Automatic:
@@ -76,17 +90,12 @@ struct UpdatesPreferencePane: View {
                 VStack(alignment: .leading) {
                     Toggle(
                         "",
-                        isOn: $autoInstallation
+                        isOn: autoInstallationBinding
                     )
                     .onAppear {
                         // 初始化时同步当前的自动更新设置状态
                         autoInstallation = updater.automaticallyChecksForUpdates
                         Logger.app.debug("\(String(localized: "Initial auto-update state")): \(autoInstallation ? String(localized: "enabled") : String(localized: "disabled"))")
-                    }
-                    .onChange(of: autoInstallation) { oldValue, newValue in
-                        UpdaterManager.shared.setAutomaticallyChecksForUpdates(newValue)
-                        Logger.app.debug("\(String(localized: "Auto-update")) \(newValue ? String(localized: "enabled") : String(localized: "disabled"))")
-                        Logger.app.debug("\(String(localized: "Update check frequency")): \(String(localized: "every")) \(Int(updater.updateCheckInterval/3600)) \(String(localized: "hours"))")
                     }
                 }
                 .fixedSize(horizontal: false, vertical: true)

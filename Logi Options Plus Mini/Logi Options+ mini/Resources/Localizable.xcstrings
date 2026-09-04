@@ -382,6 +382,16 @@
         }
       }
     },
+    "Checking supported installer arguments..." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正在检查安装程序支持的参数..."
+          }
+        }
+      }
+    },
     "China" : {
       "localizations" : {
         "zh-Hans" : {
@@ -522,26 +532,6 @@
         }
       }
     },
-    "Continue" : {
-      "localizations" : {
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "继续"
-          }
-        }
-      }
-    },
-    "Connection to app helper closed normally" : {
-      "localizations" : {
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "连接到应用助手正常关闭"
-          }
-        }
-      }
-    },
     "Connection to app helper interrupted" : {
       "localizations" : {
         "zh-Hans" : {
@@ -552,12 +542,32 @@
         }
       }
     },
+    "Continue" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "继续"
+          }
+        }
+      }
+    },
     "corrupted config backup file(s)." : {
       "localizations" : {
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "损坏的配置备份文件"
+          }
+        }
+      }
+    },
+    "Could not read supported arguments from installer help." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无法从安装程序的帮助信息中读取支持的参数。"
           }
         }
       }
@@ -691,6 +701,86 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "启用"
+          }
+        }
+      }
+    },
+    "Enables or disables Actions Ring feature. Default value is Yes." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "启用或禁用 Actions Ring 功能。默认值为“是”。"
+          }
+        }
+      }
+    },
+    "Enables or disables AI Prompt Builder feature. Default value is Yes." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "启用或禁用 AI Prompt Builder 功能。默认值为“是”。"
+          }
+        }
+      }
+    },
+    "Enables or disables app updates. Default value is Yes." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "启用或禁用应用更新。默认值为“是”。"
+          }
+        }
+      }
+    },
+    "Enables or disables device firmware updates. Default value is Yes." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "启用或禁用设备固件更新。默认值为“是”。"
+          }
+        }
+      }
+    },
+    "Enables or disables device recommendation feature. Default value is Yes." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "启用或禁用设备推荐功能。默认值为“是”。"
+          }
+        }
+      }
+    },
+    "Enables or disables keyboard backlight on the supported keyboards. Default value is Yes." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "启用或禁用受支持键盘的背光功能。默认值为“是”。"
+          }
+        }
+      }
+    },
+    "Enables or disables LogiVoice feature. Default value is Yes." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "启用或禁用 LogiVoice 功能。默认值为“是”。"
+          }
+        }
+      }
+    },
+    "Enables or disables Smart Actions feature. Default value is Yes." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "启用或禁用 Smart Actions 功能。默认值为“是”。"
           }
         }
       }
@@ -985,22 +1075,22 @@
         }
       }
     },
-    "Install Offline Package?" : {
-      "localizations" : {
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "安装离线包？"
-          }
-        }
-      }
-    },
     "Install App Helper" : {
       "localizations" : {
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "安装应用助手"
+          }
+        }
+      }
+    },
+    "Install Offline Package?" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "安装离线包？"
           }
         }
       }
@@ -1071,6 +1161,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "正在安装"
+          }
+        }
+      }
+    },
+    "Installs all Adobe plugins (Lightroom, Illustrator, Photoshop and Premiere Pro)." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "安装所有 Adobe 插件（Lightroom、Illustrator、Photoshop 和 Premiere Pro）。"
+          }
+        }
+      }
+    },
+    "Installs the app silently without the UI." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在不显示界面的情况下静默安装应用。"
           }
         }
       }
@@ -1545,6 +1655,46 @@
         }
       }
     },
+    "Shows or hides ability for users to sign into the app. Default value is Yes." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "显示或隐藏用户登录应用的功能。默认值为“是”。"
+          }
+        }
+      }
+    },
+    "Shows or hides choice for users to opt in to share app usage and diagnostics data. Default value is Yes." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "显示或隐藏允许用户选择是否共享应用使用情况和诊断数据的选项。默认值为“是”。"
+          }
+        }
+      }
+    },
+    "Shows or hides the Flow feature. Default value is Yes." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "显示或隐藏 Flow 功能。默认值为“是”。"
+          }
+        }
+      }
+    },
+    "Skipping unsupported installer argument" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "跳过安装程序不支持的参数"
+          }
+        }
+      }
+    },
     "Skipping update check, reason: user did not enable automatic updates" : {
       "localizations" : {
         "zh-Hans" : {
@@ -1615,12 +1765,12 @@
         }
       }
     },
-    "The offline installer is larger than 1.3 GB and may not contain the latest version. However, it can repair some installation or application errors.\n\nDo you want to continue?" : {
+    "The current installer does not support this option. It will be skipped during installation." : {
       "localizations" : {
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "离线安装包大小超过 1.3 GB，并且可能不是最新版本。但它可以修复部分安装或应用异常。\n\n是否继续？"
+            "value" : "当前安装程序不支持此选项，安装时会自动跳过。"
           }
         }
       }
@@ -1651,6 +1801,16 @@
         }
       }
     },
+    "The offline installer is larger than 1.3 GB and may not contain the latest version. However, it can repair some installation or application errors.\n\nDo you want to continue?" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "离线安装包大小超过 1.3 GB，并且可能不是最新版本。但它可以修复部分安装或应用异常。\n\n是否继续？"
+          }
+        }
+      }
+    },
     "This application requires the following permissions to function properly:" : {
       "localizations" : {
         "zh-Hans" : {
@@ -1672,11 +1832,22 @@
       }
     },
     "Unable to detect location" : {
+      "extractionState" : "stale",
       "localizations" : {
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "无法检测位置"
+          }
+        }
+      }
+    },
+    "Unable to detect location. Using the Global source." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无法检测区域，已回退到全球源。"
           }
         }
       }
@@ -1821,132 +1992,12 @@
         }
       }
     },
-    "Enables or disables Actions Ring feature. Default value is Yes." : {
+    "XPC connection closed" : {
       "localizations" : {
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "启用或禁用 Actions Ring 功能。默认值为“是”。"
-          }
-        }
-      }
-    },
-    "Enables or disables AI Prompt Builder feature. Default value is Yes." : {
-      "localizations" : {
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "启用或禁用 AI Prompt Builder 功能。默认值为“是”。"
-          }
-        }
-      }
-    },
-    "Enables or disables app updates. Default value is Yes." : {
-      "localizations" : {
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "启用或禁用应用更新。默认值为“是”。"
-          }
-        }
-      }
-    },
-    "Enables or disables device firmware updates. Default value is Yes." : {
-      "localizations" : {
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "启用或禁用设备固件更新。默认值为“是”。"
-          }
-        }
-      }
-    },
-    "Enables or disables device recommendation feature. Default value is Yes." : {
-      "localizations" : {
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "启用或禁用设备推荐功能。默认值为“是”。"
-          }
-        }
-      }
-    },
-    "Enables or disables keyboard backlight on the supported keyboards. Default value is Yes." : {
-      "localizations" : {
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "启用或禁用受支持键盘的背光功能。默认值为“是”。"
-          }
-        }
-      }
-    },
-    "Enables or disables LogiVoice feature. Default value is Yes." : {
-      "localizations" : {
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "启用或禁用 LogiVoice 功能。默认值为“是”。"
-          }
-        }
-      }
-    },
-    "Enables or disables Smart Actions feature. Default value is Yes." : {
-      "localizations" : {
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "启用或禁用 Smart Actions 功能。默认值为“是”。"
-          }
-        }
-      }
-    },
-    "Installs the app silently without the UI." : {
-      "localizations" : {
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "在不显示界面的情况下静默安装应用。"
-          }
-        }
-      }
-    },
-    "Shows or hides ability for users to sign into the app. Default value is Yes." : {
-      "localizations" : {
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "显示或隐藏用户登录应用的功能。默认值为“是”。"
-          }
-        }
-      }
-    },
-    "Shows or hides choice for users to opt in to share app usage and diagnostics data. Default value is Yes." : {
-      "localizations" : {
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "显示或隐藏允许用户选择是否共享应用使用情况和诊断数据的选项。默认值为“是”。"
-          }
-        }
-      }
-    },
-    "Shows or hides the Flow feature. Default value is Yes." : {
-      "localizations" : {
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "显示或隐藏 Flow 功能。默认值为“是”。"
-          }
-        }
-      }
-    },
-    "XPC connection invalidated" : {
-      "localizations" : {
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "XPC 连接无效"
+            "value" : "XPC 连接已关闭"
           }
         }
       }

@@ -52,9 +52,10 @@ final class UpdaterManager {
     var updater: SPUUpdater { controller.updater }
 
     private let feedURLProvider: UpdateFeedURLProvider
-    private let regionDetector = RegionDetector()
+    private let regionDetector = RegionDetector.shared
     private var updaterHasStarted = false
     private var updaterStartTask: Task<Void, Never>?
+    private var appliedServer: logiOptionsPlusMiniServer?
 
     private let chinaFeedURLString = "https://v.qetesh.cc/d/Public/appcast.xml"
 
@@ -103,12 +104,14 @@ final class UpdaterManager {
         }
     }
 
+    @MainActor
     func setUpdateServer(_ server: logiOptionsPlusMiniServer) {
         UserDefaults.standard.set(server.rawValue, forKey: logiOptionsPlusMiniServer.userDefaultsKey)
-        applyUpdateServer(server)
+        if server != .Automatic {
+            applyUpdateServer(server)
+        }
 
-        let feedURL = updateFeedURLString(for: server)
-        Logger.app.debug("\(String(localized: "Update server changed to")): \(feedURL)")
+        Logger.app.info("\(String(localized: "Update server changed to")): \(server.description)")
 
         guard updaterHasStarted else { return }
 
@@ -170,7 +173,7 @@ final class UpdaterManager {
 
         switch selectedServer {
         case .Automatic:
-            await regionDetector.detectRegion()
+            let isInChina = await regionDetector.detectRegion()
 
             // The user may change the selection while the network request is in flight.
             // Do not let a stale automatic result override that newer choice.
@@ -179,9 +182,8 @@ final class UpdaterManager {
                 return
             }
 
-            let resolvedServer: logiOptionsPlusMiniServer = regionDetector.isInChina ? .China : .Global
+            let resolvedServer: logiOptionsPlusMiniServer = isInChina ? .China : .Global
             applyUpdateServer(resolvedServer)
-            Logger.app.info("🗺️ \(String(localized: "Update server")): \(updateFeedURLString(for: resolvedServer))")
         case .Global, .China:
             applyUpdateServer(selectedServer)
         }
@@ -190,9 +192,15 @@ final class UpdaterManager {
     /// Updates the delegate and clears legacy Sparkle feed URL defaults.
     /// This method must be called on the main actor because Sparkle requires
     /// feed URL changes on the main thread.
+    @MainActor
     private func applyUpdateServer(_ server: logiOptionsPlusMiniServer) {
+        let resolvedServer: logiOptionsPlusMiniServer = server == .China ? .China : .Global
+        guard appliedServer != resolvedServer else { return }
+
         _ = updater.clearFeedURLFromUserDefaults()
-        feedURLProvider.feedURLString = server == .China ? chinaFeedURLString : nil
+        feedURLProvider.feedURLString = resolvedServer == .China ? chinaFeedURLString : nil
+        appliedServer = resolvedServer
+        Logger.app.debug("🌐 \(String(localized: "Update server")): \(updateFeedURLString(for: resolvedServer))")
     }
 
     private func updateFeedURLString(for server: logiOptionsPlusMiniServer) -> String {

@@ -14,6 +14,7 @@ enum OperationMode {
 class InstallerController: NSObject, ObservableObject {
     @Published var features: [Feature] = Feature.allCases
     @Published var selectedFeatures: Set<Feature> = []
+    @Published private(set) var unsupportedFeatures: Set<Feature> = []
     @Published var confirmation: Bool = false
     @Published var systemLog: String = ""
     @Published var installedVersion: String = ""
@@ -35,9 +36,11 @@ class InstallerController: NSObject, ObservableObject {
         .dfu: "--dfu",
         .backlight: "--backlight",
         .logivoice: "--logivoice",
+        .aipromptbuilder: "--aipromptbuilder",
         .deviceRecommendation: "--device-recommendation",
         .smartactions: "--smartactions",
-        .actionsRing: "--actions-ring"
+        .actionsRing: "--actions-ring",
+        .installAdobePlugins: "--install-adobe-plugins"
     ]
     
     private let downloader = Downloader()
@@ -64,11 +67,7 @@ class InstallerController: NSObject, ObservableObject {
         operationMode = .install
         failedAtStep = nil
         downloadProgress = 0
-        
-        // Generate selectedFeaturesString
-        let selectedFeaturesString = generateFeatureArgumentString()
-        
-        Logger.app.debug("\(String(localized: "Selected features string")): \(selectedFeaturesString)")
+        unsupportedFeatures = []
         
         do {
             // Step 1: Download the installer
@@ -78,6 +77,14 @@ class InstallerController: NSObject, ObservableObject {
             // Step 2: Unzip the installer
             currentStep = .extracting
             try await unzipper.unzipInstaller(type: downloadType)
+
+            // Check this installer's capabilities before uninstalling the current version.
+            let supportedArguments = try await installerRunner.supportedArguments(
+                for: Array(featureToArgumentMap.values), type: downloadType
+            )
+            updateFeatureAvailability(supportedArguments: supportedArguments)
+            let selectedFeaturesString = generateFeatureArgumentString(supportedArguments: supportedArguments)
+            Logger.app.debug("\(String(localized: "Selected features string")): \(selectedFeaturesString)")
             
             // Step 3: Backup configuration files
             currentStep = .backup
@@ -272,18 +279,34 @@ class InstallerController: NSObject, ObservableObject {
         Logger.app.info("🎉\(String(localized: "JavaScript error fix completed"))\n")
     }
     
+    /// 每次安装使用当前安装器的检测结果更新列表，不改变用户保存的功能选择。
+    func updateFeatureAvailability(supportedArguments: Set<String>) {
+        unsupportedFeatures = Set(featureToArgumentMap.compactMap { feature, argument in
+            supportedArguments.contains(argument) ? nil : feature
+        })
+    }
+
+    func helpText(for feature: Feature) -> String {
+        guard unsupportedFeatures.contains(feature) else { return feature.help }
+        return "\(String(localized: "The current installer does not support this option. It will be skipped during installation."))\n\n\(feature.help)"
+    }
+
     /// 生成功能参数字符串
-    private func generateFeatureArgumentString() -> String {
+    func generateFeatureArgumentString(supportedArguments: Set<String>) -> String {
         return features.compactMap { feature -> String? in
             guard let argument = featureToArgumentMap[feature] else { return nil }
+            guard supportedArguments.contains(argument) else {
+                Logger.app.info("\(String(localized: "Skipping unsupported installer argument")): \(argument)")
+                return nil
+            }
             return buildFeatureArgument(feature: feature, argument: argument)
         }.joined(separator: " ")
     }
     
     /// 为单个功能构建参数字符串
     private func buildFeatureArgument(feature: Feature, argument: String) -> String? {
-        // quiet 功能的特殊处理：只在选中时返回参数
-        if feature == .quiet {
+        // 无取值参数：只在选中时传入，不附加 Yes/No。
+        if feature == .quiet || feature == .installAdobePlugins {
             return selectedFeatures.contains(feature) ? argument : nil
         }
         
