@@ -3,6 +3,44 @@
     <channel>
         <title>Logi Options+ mini</title>
         <item>
+            <title>2.1.0</title>
+            <pubDate>Thu, 03 Sep 2026 10:35:35 +0800</pubDate>
+            <sparkle:version>21</sparkle:version>
+            <sparkle:shortVersionString>2.1.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/Qetesh/logi-options-plus-mini/releases/download/v2.1.0/Logi.Options+.mini.dmg" length="3894008" type="application/octet-stream" sparkle:edSignature="N0BykmKX1luwBuO9vIWVxqDKHyu44WblBIgA6XU4Tx2cr4pXxm1N/s/17C1mrDTSZ0sH0BahlE5His+cL556CA=="/>
+            <description>
+                <![CDATA[
+                    <style>
+                    ul {
+                        margin-top: 0;
+                        margin-bottom: 7px;
+                        padding-left: 18px;
+                    }
+                    </style>
+
+                    <h4>What's New in Logi Options+ mini 2.1</h4>
+                    <p style="color:#888;font-size:12px;margin:0 0 8px;">Released: 2026-09-03</p>
+                    <ul>
+                        <li>⚠️Fixed an installation issue caused by the removal of the <code>AIPromptBuilder</code> parameter from the latest Logi Options+ installer.</li>
+                        <li>Bug fixes and general improvements</li>
+                    </ul>
+
+                    <hr>
+
+                    <h4>🔄 Recent Updates:</h4>
+                    <ul>
+                        <li>The app is signed and notarized.</li>
+                        <li>Added offline installation support with download progress tracking</li>
+                        <li>Added download source preference for installer downloads</li>
+                        <li>Enhanced updater functionality and expanded Chinese localization</li>
+                        <li>Improved security and reliability for background operations.</li>
+                        <li>Updated compatibility with the latest Logi Options+ installer and macOS 27</li>
+                    </ul>
+                ]]>
+            </description>
+        </item>
+        <item>
             <title>2.0.0</title>
             <pubDate>Fri, 07 Aug 2026 12:00:00 +0800</pubDate>
             <sparkle:version>20</sparkle:version>
@@ -26,7 +64,7 @@
                         <li>Added offline installation support with download progress tracking</li>
                         <li>Added download source preference for installer downloads</li>
                         <li>Enhanced updater functionality and expanded Chinese localization</li>
-                        <li>Improved permission guidance, error handling, and XPC connection security</li>
+                        <li>Improved security and reliability for background operations.</li>
                         <li>Refined UI layout, button styling, and tool button colors</li>
                     </ul>
 

@@ -1,11 +1,11 @@
 {
-  "version": "v2.0.0",
-  "notes": "v2.0.0\n🎉 Added offline installation.\nManual download source selection, and automatic region detection.\nAdded download progress and improved Windows theme support.\n\n🔄 Recent Updates:\nImproved version checking logic.\nImproved install/uninstall reliability and temporary file management.\nGeneral UI and stability improvements.",
-  "pub_date": "2026-08-07T12:00:00.00Z",
+  "version": "v2.1.0",
+  "notes": "v2.1.0\nOptimize the uninstall and install logic.\n\n🔄 Recent Updates:\nAdded offline installation.\nImproved install/uninstall reliability and temporary file management.\nGeneral UI and stability improvements.",
+  "pub_date": "2026-09-05T12:00:00.00Z",
   "platforms": {
     "windows-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTTDdqaVJKVDYwWnZtYmI4S2R1TnA5WnZvUkpxWnVxcmo2THpsMkRiV25vcEdGSXAxVnVZckUyRnFMcHplUVR1ajJOS1pkUUwvUUJ6Y2N5ZmVTYXBxaWtwejVRcTROcHdvPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg2MDkxMDY5CWZpbGU6TG9naSBPcHRpb25zKyBtaW5pXzIuMC4wX3g2NC1zZXR1cC5leGUKejh2Znhobm5CN3kya2ZRUUdxcWZsbGtYLzNZSEllcTdCbEFjRExtRktWSWhTdHFNSzRJQ04rWkRJNU40cWZ2d1JERlJZanpYTXBObnVLWW50MkI0Qnc9PQo=",
-      "url": "https://github.com/Qetesh/logi-options-plus-mini/releases/download/v2.0.0/Logi.Options+.mini_2.0.0_x64-setup.exe"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTTDdqaVJKVDYwWnZ5cTFKbkIxRkdIazhlNUFMZEdCeWtpNzR3SHhjNzBQSU04QzU3OVJseHlQcm9pLzlXZmhSTlk4K1JWZnpjM2tyWkNFcHIvN3hGanFiTDBVc093ZndzPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg4NDI2ODg3CWZpbGU6TG9naSBPcHRpb25zKyBtaW5pXzIuMS4wX3g2NC1zZXR1cC5leGUKT2NwdWk1QkhYUzR4SU5HK09SOHA1b2VQS2tpSjZIMG9UQm5OQkl3QTlQejY1UWNhTWVHN293Y0NJRnNkemlnU2FSVjFjMW5KUjJzOEtZTEF1WXFrQmc9PQo=",
+      "url": "https://github.com/Qetesh/logi-options-plus-mini/releases/download/v2.1.0/Logi.Options+.mini_2.1.0_x64-setup.exe"
     }
   }
 }
