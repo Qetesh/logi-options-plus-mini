@@ -57,7 +57,7 @@
   - update 应用程序更新
   - dfu 设备固件更新
   - logivoice 罗技语音功能
-  - aipromptbuilder AI Prompt Builder 功能（仅限 Windows）
+  - aipromptbuilder AI Prompt Builder 功能（Logi Options+ 2.7.961922 起不再支持）
   - smartactions
   - actions-ring
   - device-recommendation 设备推荐功能（仅限macOS）

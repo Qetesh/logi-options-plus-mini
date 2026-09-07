@@ -54,7 +54,7 @@ This project customizes the Logi Options+ functionality through official install
   - update: application updates
   - dfu: device firmware updates
   - logivoice: Logitech voice 
-  - aipromptbuilder: AI Prompt Builder (Windows only)
+  - aipromptbuilder: AI Prompt Builder (Deprecated in Logi Options+ 2.7.961922)
   - smartactions
   - actions-ring
   - device-recommendation: device recommendation (macOS only)

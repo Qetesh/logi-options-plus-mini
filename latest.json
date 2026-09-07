@@ -1,11 +1,11 @@
 {
-  "version": "v2.1.0",
-  "notes": "v2.1.0\nOptimize the uninstall and install logic.\n\n🔄 Recent Updates:\nAdded offline installation.\nImproved install/uninstall reliability and temporary file management.\nGeneral UI and stability improvements.",
-  "pub_date": "2026-09-05T12:00:00.00Z",
+  "version": "v2.1.1",
+  "notes": "v2.1.1\n⚠️Fixed an installation issue caused by the removal of the AIPromptBuilder parameter from the latest Logi Options+ installer.\nOptimize the uninstall and install logic.\n\n🔄 Recent Updates:\nAdded offline installation.\nImproved install/uninstall reliability and temporary file management.\nGeneral UI and stability improvements.",
+  "pub_date": "2026-09-07T12:00:00.00Z",
   "platforms": {
     "windows-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTTDdqaVJKVDYwWnZ5cTFKbkIxRkdIazhlNUFMZEdCeWtpNzR3SHhjNzBQSU04QzU3OVJseHlQcm9pLzlXZmhSTlk4K1JWZnpjM2tyWkNFcHIvN3hGanFiTDBVc093ZndzPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg4NDI2ODg3CWZpbGU6TG9naSBPcHRpb25zKyBtaW5pXzIuMS4wX3g2NC1zZXR1cC5leGUKT2NwdWk1QkhYUzR4SU5HK09SOHA1b2VQS2tpSjZIMG9UQm5OQkl3QTlQejY1UWNhTWVHN293Y0NJRnNkemlnU2FSVjFjMW5KUjJzOEtZTEF1WXFrQmc9PQo=",
-      "url": "https://github.com/Qetesh/logi-options-plus-mini/releases/download/v2.1.0/Logi.Options+.mini_2.1.0_x64-setup.exe"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTTDdqaVJKVDYwWnBLd3BFbUhTajJLeVRkVmJLdFFEeEp2R2thdG1uckNkdy9mazF3VFpjZktneGR5QzBBNVFlbHRqMjZiOWhQd2VpeURsc2JINDBmMkZJSTQzZUdLT1F3PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg4NzQ3Mjg2CWZpbGU6TG9naSBPcHRpb25zKyBtaW5pXzIuMS4xX3g2NC1zZXR1cC5leGUKTEV6R1NIWm1lWmNVVzZJMGtET2VnbmI3Y3BKeUxOa3ZLTC9PVmxhNnM2T2d2dU9WNEtyNnVkNllib09QNDAwNU92S1h5dWRSZzdmR0t5cjE1T1JoQUE9PQo=",
+      "url": "https://github.com/Qetesh/logi-options-plus-mini/releases/download/v2.1.0/Logi.Options+.mini_2.1.1_x64-setup.exe"
     }
   }
 }

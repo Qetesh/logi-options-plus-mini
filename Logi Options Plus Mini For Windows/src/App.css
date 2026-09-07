@@ -150,6 +150,17 @@ h2 {
   background: var(--feature-hover);
 }
 
+/* AI Prompt Builder 等不受当前安装程序支持的项：置灰禁用，但仍在列表中显示 */
+.feature-item.feature-disabled .feature-label,
+.feature-item.feature-disabled .feature-name {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.feature-item.feature-disabled:hover {
+  background: transparent;
+}
+
 .feature-label {
   display: flex;
   align-items: center;

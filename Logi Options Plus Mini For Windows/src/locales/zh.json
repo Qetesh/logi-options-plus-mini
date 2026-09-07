@@ -13,6 +13,7 @@
     "backlight": "启用或禁用支持键盘的背光功能。",
     "logivoice": "启用或禁用 LogiVoice 功能。",
     "aipromptbuilder": "启用或禁用 AI Prompt Builder 功能。",
+    "paramUnsupported": "安装程序版本 {{version}} 不支持此参数，安装时将被忽略。",
     "device-recommendation": "启用或禁用设备推荐功能。",
     "smartactions": "启用或禁用 Smart Actions 功能。",
     "actions-ring": "启用或禁用 Actions Ring 功能。"

@@ -57,6 +57,14 @@ function App() {
   const [refreshingInstalled, setRefreshingInstalled] = useState(false);
   const [refreshingLatest, setRefreshingLatest] = useState(false);
   const [appVersion, setAppVersion] = useState('');
+  // 安装程序参数支持状态：{ version: 判定依据的安装程序版本, params: { 参数名(功能项 id): 是否受支持 } }
+  // 生命周期与下载的安装包绑定，不跨启动持久化（启动时版本未知，所有选项保持可用）：
+  // - 安装包下载完成后，后端按 exe 文件属性版本判定并发送 installer-param-support 事件设置；
+  // - 安装包（下载缓存）被清理时发送 installer-cache-cleared 事件重置。
+  const [installerParamSupport, setInstallerParamSupport] = useState<{
+    version: string | null;
+    params: Record<string, boolean>;
+  }>({ version: null, params: {} });
 
   const addLog = useCallback((message: string, level: string = 'info') => {
     const timestamp = new Date().toLocaleTimeString();
@@ -137,6 +145,10 @@ function App() {
     return logPriority >= priority;
   });
 
+  // 判断功能项是否被禁用：仅当已根据下载的安装包版本判定该参数不受支持时禁用（置灰，仍显示在列表中）
+  const isFeatureDisabled = (featureId: string) =>
+    featureId in installerParamSupport.params && !installerParamSupport.params[featureId];
+
   // Update step based on log messages from backend
   const updateStepFromLog = useCallback((message: string) => {
     if (message.includes('Step 1/5: Downloading') || message.includes('Downloading installer')) {
@@ -167,6 +179,49 @@ function App() {
       unlisten.then(fn => fn());
     };
   }, [addLog, updateStepFromLog]);
+
+  // 安装包下载完成后，后端根据 exe 文件属性版本判定各安装参数的支持状态，
+  // 据此禁用 UI 列表中对应的功能项（后端规则表 exe_version::PARAM_SUPPORT_RULES 可扩展）
+  useEffect(() => {
+    const unlisten = listen<{ version: string | null; params: Record<string, boolean> }>(
+      'installer-param-support',
+      (event) => {
+        const { version, params } = event.payload;
+        setInstallerParamSupport({ version, params });
+        // 禁用不受支持的参数对应的功能项，并从已选功能中移除，避免后续安装继续传递
+        const unsupported = Object.entries(params).filter(([, supported]) => !supported);
+        if (unsupported.length > 0) {
+          addLog(
+            `Installer version ${version ?? 'unknown'}: parameter(s) ${unsupported.map(([p]) => `/${p}`).join(', ')} not supported, options disabled`,
+            'warn'
+          );
+          setSelectedFeatures(prev => {
+            const next = new Set(prev);
+            let changed = false;
+            for (const [param] of unsupported) {
+              if (next.delete(param)) changed = true;
+            }
+            return changed ? next : prev;
+          });
+        }
+      }
+    );
+
+    return () => {
+      unlisten.then(fn => fn());
+    };
+  }, [addLog]);
+
+  // 下载的安装包（下载缓存）被清理后，参数支持状态的判定依据消失，重置为未知（全部恢复可用）
+  useEffect(() => {
+    const unlisten = listen('installer-cache-cleared', () => {
+      setInstallerParamSupport({ version: null, params: {} });
+    });
+
+    return () => {
+      unlisten.then(fn => fn());
+    };
+  }, []);
 
   // Load features on mount
   useEffect(() => {
@@ -292,6 +347,7 @@ function App() {
   // 实际执行安装的逻辑
   const performInstall = async () => {
     try {
+      // 提交全部功能项，由后端根据下载的安装程序 exe 版本过滤不支持的参数
       const featureArray: [string, boolean][] = features.map(f => [f.id, selectedFeatures.has(f.id)]);
       addLog(`Features: ${featureArray.map(([k, v]) => `${k}:${v}`).join(' ')}`);
       
@@ -369,6 +425,7 @@ function App() {
   // 实际执行离线版安装的逻辑
   const performOfflineInstall = async () => {
     try {
+      // 提交全部功能项，由后端根据下载的安装程序 exe 版本过滤不支持的参数
       const featureArray: [string, boolean][] = features.map(f => [f.id, selectedFeatures.has(f.id)]);
       addLog(`Features: ${featureArray.map(([k, v]) => `${k}:${v}`).join(' ')}`);
 
@@ -554,23 +611,28 @@ function App() {
         </div>
         
         <div className="feature-list">
-          {features.map((feature) => (
-            <div
-              key={feature.id}
-              className="feature-item"
-              title={t(`features.${feature.id}`)}
-            >
-              <label className="feature-label">
-                <input
-                  type="checkbox"
-                  checked={selectedFeatures.has(feature.id)}
-                  onChange={() => handleFeatureToggle(feature.id)}
-                  disabled={isLoading}
-                />
-                <span className="feature-name">{feature.name}</span>
-              </label>
-            </div>
-          ))}
+          {features.map((feature) => {
+            const featureDisabled = isFeatureDisabled(feature.id);
+            return (
+              <div
+                key={feature.id}
+                className={`feature-item${featureDisabled ? ' feature-disabled' : ''}`}
+                title={featureDisabled
+                  ? t('features.paramUnsupported', { version: installerParamSupport.version ?? '' })
+                  : t(`features.${feature.id}`)}
+              >
+                <label className="feature-label">
+                  <input
+                    type="checkbox"
+                    checked={selectedFeatures.has(feature.id)}
+                    onChange={() => handleFeatureToggle(feature.id)}
+                    disabled={isLoading || featureDisabled}
+                  />
+                  <span className="feature-name">{feature.name}</span>
+                </label>
+              </div>
+            );
+          })}
         </div>
 
         <div className="version-actions-row">

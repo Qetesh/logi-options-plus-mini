@@ -5,6 +5,7 @@ use tauri::Emitter;
 
 use crate::backup::BackupManager;
 use crate::downloader::Downloader;
+use crate::exe_version;
 use crate::models::InstallResult;
 use crate::version::get_installed_version_with_app;
 
@@ -29,6 +30,89 @@ pub struct Installer {
     temp_dir: PathBuf,
     downloader: Downloader,
     backup_manager: BackupManager,
+}
+
+/// 读取安装程序 exe 文件属性中的版本，按 `exe_version::PARAM_SUPPORT_RULES`
+/// 计算各安装参数的支持状态。
+///
+/// 结果会写入日志，并通过 `installer-param-support` 事件发送给前端，
+/// 前端据此在功能列表中禁用/恢复对应选项；下载的安装包被清理后，
+/// 状态会随 `installer-cache-cleared` 事件重置。
+/// 读取版本失败时所有参数按"支持"处理，保持旧行为。
+fn check_installer_param_support(
+    app: &tauri::AppHandle,
+    installer_path: &std::path::Path,
+) -> Vec<(&'static exe_version::ParamSupportRule, bool)> {
+    match exe_version::get_file_version_string(installer_path) {
+        Some(version) => {
+            emit_log_internal(app, &format!("Installer file version: {}", version), "info");
+            let support = exe_version::evaluate_param_support(&version);
+            for (rule, supported) in &support {
+                if *supported {
+                    emit_log_internal(
+                        app,
+                        &format!("Parameter /{} is supported by this installer", rule.param),
+                        "debug",
+                    );
+                } else {
+                    emit_log_internal(
+                        app,
+                        &format!(
+                            "Parameter /{} is not supported since installer {}, skipping it",
+                            rule.param,
+                            exe_version::format_version(&rule.unsupported_since)
+                        ),
+                        "info",
+                    );
+                }
+            }
+            emit_installer_param_support(app, &Some(version), &support);
+            support
+        }
+        None => {
+            emit_log_internal(
+                app,
+                "Unable to read installer file version, assuming all parameters are supported",
+                "warn",
+            );
+            let support: Vec<(&'static exe_version::ParamSupportRule, bool)> =
+                exe_version::PARAM_SUPPORT_RULES
+                    .iter()
+                    .map(|rule| (rule, true))
+                    .collect();
+            emit_installer_param_support(app, &None, &support);
+            support
+        }
+    }
+}
+
+/// 向前端发送安装程序参数支持状态（`installer-param-support` 事件）。
+fn emit_installer_param_support(
+    app: &tauri::AppHandle,
+    version: &Option<String>,
+    support: &[(&'static exe_version::ParamSupportRule, bool)],
+) {
+    let mut params = serde_json::Map::new();
+    for (rule, supported) in support {
+        params.insert(rule.param.to_string(), serde_json::Value::Bool(*supported));
+    }
+    let _ = app.emit(
+        "installer-param-support",
+        serde_json::json!({
+            "version": version,
+            "params": params,
+        }),
+    );
+}
+
+/// 通知前端：下载的安装包（下载缓存）已被删除，据此判定的参数支持状态一并失效。
+fn emit_installer_cache_cleared(app: &tauri::AppHandle) {
+    emit_log_internal(
+        app,
+        "Downloaded installer removed, installer parameter support state cleared",
+        "debug",
+    );
+    let _ = app.emit("installer-cache-cleared", serde_json::json!({}));
 }
 
 impl Installer {
@@ -188,6 +272,9 @@ impl Installer {
     /// Remove the temporary working directory.
     /// Safe to call when the directory does not exist (skipped) or removal
     /// fails (logged as a warning, does not propagate).
+    ///
+    /// 下载的安装包被删除后，据此判定的安装参数支持状态一并失效，
+    /// 通知前端重置（`installer-cache-cleared` 事件）。
     fn remove_temp_dir(&self, app: &tauri::AppHandle) {
         if !self.temp_dir.exists() {
             emit_log_internal(
@@ -211,6 +298,8 @@ impl Installer {
                     ),
                     "info",
                 );
+                // 安装包已删除，参数支持状态的判定依据消失，通知前端清除
+                emit_installer_cache_cleared(app);
             }
             Err(e) => {
                 emit_log_internal(
@@ -222,6 +311,7 @@ impl Installer {
                     ),
                     "warn",
                 );
+                // 清理失败安装包仍在磁盘上，保留已判定的参数支持状态
             }
         }
     }
@@ -326,10 +416,26 @@ impl Installer {
             "info",
         );
 
+        // 根据下载的安装程序 exe 文件属性中的版本，计算各安装参数的支持状态
+        //（在线安装和离线安装均经过此处；规则见 exe_version::PARAM_SUPPORT_RULES）
+        let param_support = check_installer_param_support(app, installer_path);
+
+        // 过滤掉当前安装程序版本不支持的参数，安装时不传递
+        let unsupported_params: Vec<&str> = param_support
+            .iter()
+            .filter(|(_, supported)| !supported)
+            .map(|(rule, _)| rule.param)
+            .collect();
+        let features: Vec<(String, bool)> = features
+            .iter()
+            .filter(|(id, _)| !unsupported_params.contains(&id.as_str()))
+            .cloned()
+            .collect();
+
         // Build arguments
         let mut args = Vec::new();
 
-        for (feature_id, enabled) in features {
+        for (feature_id, enabled) in &features {
             match feature_id.as_str() {
                 "quiet" => {
                     if *enabled {

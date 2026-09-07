@@ -8,7 +8,7 @@
 - **安装管理** - 从 Logitech 官方服务器下载安装包（中国/海外 CDN 自动选择），支持静默安装
 - **功能模块选择** - 12 个可选功能模块，可自定义安装内容
   - Quiet Install、Analytics、Flow、SSO、Update、DFU
-  - Backlight、LogiVoice、AI Prompt Builder、Device Recommendation、Smart Actions、Actions Ring
+  - Backlight、LogiVoice、AI Prompt Builder(Deprecated in Logi Options+ 2.7.961922)、Device Recommendation、Smart Actions、Actions Ring
 - **卸载功能** - 完整卸载 Logi Options+
 - **版本检测** - 检测当前已安装版本和最新版本
 

@@ -1,6 +1,7 @@
 mod backup;
 mod commands;
 mod downloader;
+mod exe_version;
 mod installer;
 mod models;
 mod version;

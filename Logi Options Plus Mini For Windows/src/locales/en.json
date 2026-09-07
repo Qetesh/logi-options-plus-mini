@@ -13,6 +13,7 @@
     "backlight": "Enables or disables keyboard backlight on the supported keyboards.",
     "logivoice": "Enables or disables LogiVoice feature.",
     "aipromptbuilder": "Enables or disables AI Prompt Builder feature.",
+    "paramUnsupported": "Not supported by installer version {{version}}; it will be skipped during installation.",
     "device-recommendation": "Enables or disables device recommendation feature.",
     "smartactions": "Enables or disables Smart Actions feature.",
     "actions-ring": "Enables or disables Actions Ring feature."
