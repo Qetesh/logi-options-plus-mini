@@ -995,6 +995,9 @@
         }
       }
     },
+    "Found leftover configuration backup, removing it" : {
+
+    },
     "Found Logi Options+ already installed. Version" : {
       "localizations" : {
         "zh-Hans" : {
@@ -1384,6 +1387,9 @@
           }
         }
       }
+    },
+    "No configuration to back up, keeping existing backup" : {
+
     },
     "No corrupted config backup files found." : {
       "localizations" : {

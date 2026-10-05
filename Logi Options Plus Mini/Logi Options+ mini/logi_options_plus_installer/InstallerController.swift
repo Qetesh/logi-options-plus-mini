@@ -88,7 +88,7 @@ class InstallerController: NSObject, ObservableObject {
             
             // Step 3: Backup configuration files
             currentStep = .backup
-            backupManager.performOperation(operation: "backup")
+            try backupManager.performOperation(operation: "backup")
             
             // Step 4: Uninstall
             currentStep = .uninstalling
@@ -97,7 +97,7 @@ class InstallerController: NSObject, ObservableObject {
             
             // Step 5: Restore configuration
             currentStep = .restoring
-            backupManager.performOperation(operation: "restore")
+            try backupManager.performOperation(operation: "restore")
             
             // Step 6: Install
             currentStep = .installing
