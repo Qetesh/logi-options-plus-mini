@@ -42,6 +42,14 @@ if (Test-Path $downloadPath) {
     exit 1
 }
 
+# Verify the installer is signed by Logitech before running it with administrator privileges
+$signature = Get-AuthenticodeSignature -FilePath $downloadPath
+if ($signature.Status -ne "Valid" -or $signature.SignerCertificate.Subject -notmatch "(^|, )O=Logitech Inc(,|$)") {
+    Write-Host "$(Get-Date) | Installer signature check failed: $($signature.Status) $($signature.SignerCertificate.Subject)"
+    exit 1
+}
+Write-Host "$(Get-Date) | Installer signature verified."
+
 # Interactive Feature Selection
 Write-Host ""
 Write-Host "Please select the features you want to keep:"
