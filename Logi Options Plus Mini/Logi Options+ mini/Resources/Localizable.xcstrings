@@ -1145,6 +1145,26 @@
         }
       }
     },
+    "Installer signature check failed" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "安装程序签名校验失败"
+          }
+        }
+      }
+    },
+    "Installer signature verified" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "安装程序签名校验通过"
+          }
+        }
+      }
+    },
     "Installing app helper..." : {
       "localizations" : {
         "zh-Hans" : {

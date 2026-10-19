@@ -1,8 +1,12 @@
 import Foundation
 import Logging
 import AppKit
+import Security
 
 class InstallerRunner {
+    /// Team ID of "Developer ID Application: Logitech Inc. (QED4VVPZWA)", which signs the installers.
+    private static let logitechTeamIdentifier = "QED4VVPZWA"
+
     func runInstaller(selectedFeatures: String, type: DownloadType = .installer) async throws {
         let installerURL = installerExecutableURL(for: type)
         try await runExecutable(at: installerURL, arguments: selectedFeatures, isPatch: false)
@@ -71,6 +75,36 @@ class InstallerRunner {
 
         try FileManager.default.setAttributes([.posixPermissions: 0o755], ofItemAtPath: installerURL.path)
     }
+
+    /// The installer is extracted to a user-writable temporary directory and then run with
+    /// administrator privileges, so check that it is signed by Logitech right before each run.
+    private func verifyInstallerSignature(at installerURL: URL) throws {
+        // .../logioptionsplus_installer.app/Contents/MacOS/logioptionsplus_installer -> .../logioptionsplus_installer.app
+        let bundleURL = installerURL
+            .deletingLastPathComponent()
+            .deletingLastPathComponent()
+            .deletingLastPathComponent()
+        let requirementString = "anchor apple generic and certificate leaf[subject.OU] = \"\(Self.logitechTeamIdentifier)\""
+
+        var staticCode: SecStaticCode?
+        var requirement: SecRequirement?
+        var status = SecStaticCodeCreateWithPath(bundleURL as CFURL, [], &staticCode)
+        if status == errSecSuccess {
+            status = SecRequirementCreateWithString(requirementString as CFString, [], &requirement)
+        }
+        if status == errSecSuccess, let staticCode, let requirement {
+            let flags = SecCSFlags(rawValue: kSecCSCheckAllArchitectures | kSecCSStrictValidate)
+            status = SecStaticCodeCheckValidity(staticCode, flags, requirement)
+        }
+
+        guard status == errSecSuccess else {
+            Logger.app.error("\(String(localized: "Installer signature check failed")): \(bundleURL.path), status: \(status)")
+            throw NSError(domain: "InstallerRunner", code: 7, userInfo: [
+                NSLocalizedDescriptionKey: "Installer signature check failed (status \(status))"
+            ])
+        }
+        Logger.app.info("\(String(localized: "Installer signature verified")): \(bundleURL.lastPathComponent)")
+    }
     
     func runPatch() async throws {
         // Patch 使用普通用户上下文打开应用，以便访问用户钥匙串
@@ -103,6 +137,7 @@ class InstallerRunner {
     
     private func runExecutable(at installerURL: URL, arguments: String, isPatch: Bool) async throws {
         try prepareExecutable(at: installerURL)
+        try verifyInstallerSignature(at: installerURL)
         
         if isPatch {
             Logger.app.info("🔧 \(String(localized: "Running fix patch..."))")

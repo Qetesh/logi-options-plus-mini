@@ -4,6 +4,7 @@ mod downloader;
 mod exe_version;
 mod installer;
 mod models;
+mod signature;
 mod version;
 
 use commands::{

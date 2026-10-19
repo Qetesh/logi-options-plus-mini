@@ -23,55 +23,6 @@ private enum TrustedClient {
 
     static let codeRequirement =
         "anchor apple generic and identifier \"\(bundleIdentifier)\" and certificate leaf[subject.OU] = \"\(teamIdentifier)\""
-
-    /// Validate the process that initiated an XPC connection.
-    ///
-    /// NSXPCConnection exposes the peer PID publicly. We resolve that PID to a
-    /// live SecCode object and let macOS validate both its signature and the
-    /// requirement above. This check is done before the connection is
-    /// accepted, so an untrusted process never receives the exported object.
-    static func validate(connection: NSXPCConnection) -> Bool {
-        let pid = connection.processIdentifier
-        guard pid > 0 else {
-            logger.error("Agent: rejecting XPC client with invalid PID: \(pid)")
-            return false
-        }
-
-        let attributes = [kSecGuestAttributePid: pid] as CFDictionary
-        var guestCode: SecCode?
-        let guestStatus = SecCodeCopyGuestWithAttributes(
-            nil,
-            attributes,
-            [],
-            &guestCode
-        )
-
-        guard guestStatus == errSecSuccess, let guestCode else {
-            logger.error("Agent: failed to resolve client code for PID \(pid), status: \(guestStatus)")
-            return false
-        }
-
-        var requirement: SecRequirement?
-        let requirementStatus = SecRequirementCreateWithString(
-            codeRequirement as CFString,
-            [],
-            &requirement
-        )
-
-        guard requirementStatus == errSecSuccess, let requirement else {
-            logger.error("Agent: failed to create client code requirement, status: \(requirementStatus)")
-            return false
-        }
-
-        let validationStatus = SecCodeCheckValidity(guestCode, [], requirement)
-        guard validationStatus == errSecSuccess else {
-            logger.error("Agent: rejected unsigned or unexpected client PID \(pid), status: \(validationStatus)")
-            return false
-        }
-
-        logger.info("Agent: accepted trusted client PID \(pid)")
-        return true
-    }
 }
 
 /// 定义 XPC 服务的 API 协议
@@ -142,11 +93,10 @@ class ServiceDelegate: NSObject, NSXPCListenerDelegate {
         logger.info("Agent: [shouldAcceptNewConnection] received new connection request")
         logger.info("Agent: [shouldAcceptNewConnection] process ID: \(newConnection.processIdentifier)")
 
-        guard TrustedClient.validate(connection: newConnection) else {
-            logger.error("Agent: [shouldAcceptNewConnection] rejecting untrusted client")
-            newConnection.invalidate()
-            return false
-        }
+        // Let the system validate the client against the code requirement. This uses the
+        // connection's audit token rather than its PID, so the check cannot be raced by
+        // PID reuse, and it applies to every message received on the connection.
+        newConnection.setCodeSigningRequirement(TrustedClient.codeRequirement)
         
         // 设置远程对象接口
         newConnection.exportedInterface = NSXPCInterface(with: AgentProtocol.self)

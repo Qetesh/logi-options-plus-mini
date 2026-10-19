@@ -138,6 +138,10 @@ package_unzip="$downloaded_path"
 echo "$(date) | Unarchiving $package_zip to $package_unzip..."
 ditto -x -k "$package_zip" "$package_unzip" || { echo "Failed to unzip installer"; exit 1; }
 
+# Verify the installer is signed by Logitech (Team ID QED4VVPZWA) before running it with sudo.
+echo "$(date) | Verifying installer signature..."
+codesign --verify --strict -R='anchor apple generic and certificate leaf[subject.OU] = "QED4VVPZWA"' "$package_unarchived_path" || { echo "Installer signature check failed"; exit 1; }
+
 # Configure backup
 echo "$(date) | Backing up existing configuration..."
 mv ~/Library/"Application Support/LogiOptionsPlus" ~/Library/"Application Support/LogiOptionsPlus_bak"
