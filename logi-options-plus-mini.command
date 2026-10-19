@@ -10,14 +10,12 @@
 # Path.
 package="logioptionsplus_installer"
 unarchived_name="logioptionsplus_installer.app"
-downloaded_path="/private/tmp/logioptionsplus" #Path, from where the install operation happens.
-downloaded_package_path="$downloaded_path/$package.zip"
-package_unarchived_path="$downloaded_path/$unarchived_name"
 weburl="https://download01.logi.com/web/ftp/pub/techsupport/optionsplus/logioptionsplus_installer.zip"
 weburl_cn="https://download.logitech.com.cn/web/ftp/pub/techsupport/optionsplus/logioptionsplus_installer.zip"
 appname="Logi Options+"
 installer_name="logioptionsplus_installer"
-install_path="$package_unarchived_path/Contents/MacOS/$installer_name"
+config_path="$HOME/Library/Application Support/LogiOptionsPlus"
+backup_path="$HOME/Library/Application Support/LogiOptionsPlus_bak"
 
 echo ""
 echo "##############################################################"
@@ -108,15 +106,14 @@ if [[ $confirm != "Y" && $confirm != "y" && $confirm != "" ]]; then
     exit 1
 fi
 
-pushd "/private/tmp"
-if [ -d "$downloaded_path" ]; then
-    echo "$(date) | Cleaning up previous cache."
-    rm -rf logioptionsplus
-fi
-
-echo "$(date) | Creating $downloaded_path directory..."
-mkdir -p logioptionsplus
-popd
+# Use a private, unpredictable working directory instead of a fixed path under /private/tmp,
+# so other local users cannot pre-create it or swap the installer before it is run with sudo.
+downloaded_path=$(mktemp -d "${TMPDIR:-/tmp}/logioptionsplus.XXXXXX") || { echo "Failed to create temporary directory"; exit 1; }
+trap 'rm -rf "$downloaded_path"' EXIT
+echo "$(date) | Created $downloaded_path directory."
+downloaded_package_path="$downloaded_path/$package.zip"
+package_unarchived_path="$downloaded_path/$unarchived_name"
+install_path="$package_unarchived_path/Contents/MacOS/$installer_name"
 
 # Detect region
 echo "$(date) | Detecting region via https://cloudflare.com/cdn-cgi/trace"
@@ -139,16 +136,23 @@ echo "$(date) | Unarchiving $package_zip to $package_unzip..."
 ditto -x -k "$package_zip" "$package_unzip" || { echo "Failed to unzip installer"; exit 1; }
 
 # Configure backup
-echo "$(date) | Backing up existing configuration..."
-mv ~/Library/"Application Support/LogiOptionsPlus" ~/Library/"Application Support/LogiOptionsPlus_bak"
+if [ -d "$config_path" ]; then
+    echo "$(date) | Backing up existing configuration..."
+    # Remove a stale backup first, otherwise the copy would be nested inside it
+    rm -rf "$backup_path"
+    cp -R "$config_path" "$backup_path" || { echo "Failed to back up configuration"; exit 1; }
+fi
 
 echo "$(date) | Uninstalling existing version of $appname"
 uninstall_command="$install_path --uninstall"
 echo "Executing: $uninstall_command"
 sudo "$install_path" --uninstall >> /dev/null 2>&1
 
-echo "$(date) | Restoring configuration from backup..."
-mv ~/Library/"Application Support/LogiOptionsPlus_bak" ~/Library/"Application Support/LogiOptionsPlus"
+if [ -d "$backup_path" ]; then
+    echo "$(date) | Restoring configuration from backup..."
+    rm -rf "$config_path"
+    mv "$backup_path" "$config_path"
+fi
 
 # Installing...
 # Change the following arguments to 'Yes' if you want to install the module.
@@ -175,7 +179,6 @@ sudo "$install_path" \
 if [ "$?" = "0" ]; then
     echo "$(date) | $appname Installed successfully."
     echo "$(date) | Cleaning Up"
-    rm -rf $downloaded_path
     exit 0
 else
     # Something went wrong here, either the download failed or the install Failed
