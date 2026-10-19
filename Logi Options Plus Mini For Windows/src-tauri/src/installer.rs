@@ -7,6 +7,7 @@ use crate::backup::BackupManager;
 use crate::downloader::Downloader;
 use crate::exe_version;
 use crate::models::InstallResult;
+use crate::signature;
 use crate::version::get_installed_version_with_app;
 
 fn emit_log_internal(app: &tauri::AppHandle, message: &str, level: &str) {
@@ -82,6 +83,26 @@ fn check_installer_param_support(
                     .collect();
             emit_installer_param_support(app, &None, &support);
             support
+        }
+    }
+}
+
+/// 执行安装程序前校验其 Authenticode 签名，确认由 Logitech 签名。
+///
+/// 安装程序位于当前用户可写的临时目录，会以管理员权限执行，
+/// 因此每次执行前都重新校验，避免执行被替换的文件。
+fn verify_installer_signature(
+    app: &tauri::AppHandle,
+    installer_path: &std::path::Path,
+) -> Result<(), String> {
+    match signature::verify_installer(installer_path) {
+        Ok(()) => {
+            emit_log_internal(app, "Installer signature verified (Logitech Inc)", "info");
+            Ok(())
+        }
+        Err(e) => {
+            emit_log_internal(app, &e, "error");
+            Err(e)
         }
     }
 }
@@ -344,6 +365,8 @@ impl Installer {
     ) -> Result<(), String> {
         emit_log_internal(app, "Running uninstall command...", "info");
 
+        verify_installer_signature(app, installer_path)?;
+
         // Run the installer with /uninstall argument
         let output = Command::new(installer_path)
             .arg("/uninstall")
@@ -540,6 +563,8 @@ impl Installer {
             &format!("Install arguments: {:?}", args),
             "debug",
         );
+
+        verify_installer_signature(app, installer_path)?;
 
         // Run installer with elevated privileges
         let output = Command::new(installer_path)
