@@ -8,7 +8,12 @@ class Unzipper {
         let destinationFolder = type.extractionDirectoryName
         let destinationFolderURL = FileUtils.temporaryFileURL(forFileName: destinationFolder)
         
-        SSZipArchive.unzipFile(atPath: zipURL.path, toDestination: destinationFolderURL.path)
+        let success = SSZipArchive.unzipFile(atPath: zipURL.path, toDestination: destinationFolderURL.path)
+        guard success else {
+            throw NSError(domain: "Unzipper", code: 1, userInfo: [
+                NSLocalizedDescriptionKey: "Failed to extract \(zipURL.lastPathComponent)"
+            ])
+        }
         Logger.app.info("🗜️ \(String(localized: "File extracted to")): \(destinationFolderURL.path)")
     }
 }
